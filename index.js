@@ -200,9 +200,31 @@ const parseFile = async (filename) => {
       };
     }
 
-    if (textContent.items.length < 20) continue;
+    if (textContent.items.length < 20) {
+      console.log(`skipping page ${pageNum}`);
+      continue;
+    }
 
-    // console.log({ pageNum, numItems: textContent.items.length });
+    let headerBBox = {};
+
+    for (var j = 0 ; j < textContent.items.length ; j++) {
+      const textItem = textContent.items[j];
+      let { str } = textItem;
+      let { x, y, w, h } = getCoords(viewport, textItem);
+      if (str === 'RT dist (km)') {
+        headerBBox.x = x;
+        headerBBox.y = y;
+        headerBBox.w = w;
+      } else if (str === 'last change') {
+        headerBBox.h = y + h - headerBBox.y;
+      }
+    }
+
+    if (Object.keys(headerBBox).length !== 4) {
+      console.log(`skipping page ${pageNum}`);
+      continue;
+    }
+    console.log({headerBBox})
 
     for (var j = 0 ; j < textContent.items.length ; j++) {
       const textItem = textContent.items[j];
