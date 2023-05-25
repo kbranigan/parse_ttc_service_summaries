@@ -20,22 +20,27 @@ const START_PAGE = 1;
 const pdfPath = 'service_summaries/';
 // const pdfPath = '/Users/kevin/Documents/ttc/'; 
 const allFiles = [
-  // 'service_summary_2008_03_30.pdf','service_summary_2008_06_22.pdf','service_summary_2008_08_31.pdf','service_summary_2008_11_23.pdf',
+  // 'service_summary_2008_03_30.pdf',
+  // 'service_summary_2008_06_22.pdf','service_summary_2008_08_31.pdf','service_summary_2008_11_23.pdf',
   // 'service_summary_2009_01_04.pdf','service_summary_2009_02_15.pdf','service_summary_2009_05_10.pdf','service_summary_2009_06_21-v2.pdf','service_summary_2009_09_06.pdf','service_summary_2009_10_18-rev.pdf','service_summary_2009_11_22.pdf',
   // 'service_summary_2010_01_03.pdf','service_summary_2010_03_28_v2.pdf','service_summary_2010_05_09.pdf','service_summary_2010_06_20.pdf','service_summary_2010_09_05.pdf','service_summary_2010_10_10.pdf','service_summary_2010_11_21.pdf',
   // 'service_summary_2011_01_02.pdf','service_summary_2011_03_27_rev_2.pdf','service_summary_2011_05_08.pdf','service_summary_2011_06_19.pdf','service_summary_2011_09_04.pdf','service_summary_2011_10_09.pdf',
   // 'service_summary_2012_01_08.pdf','service_summary_2012_02_12.pdf','service_summary_2012_03_25.pdf','service_summary_2012_05_06.pdf','service_summary_2012_06_17.pdf','service_summary_2012_07_29.pdf','service_summary_2012_09_02.pdf','service_summary_2012_10_07.pdf','service_summary_2012_11_18.pdf',
   // 'service_summary_2013_01_06.pdf','service_summary_2013_03_31.pdf','service_summary_2013_05_12.pdf','service_summary_2013_06_23.pdf','service_summary_2013_09_01.pdf','service_summary_2013_10_13.pdf','service_summary_2013_11_24.pdf',
   // 'service_summary_2014_01_05.pdf','service_summary_2014_03_30.pdf','service_summary_2014_05_11.pdf','service_summary_2014_06_22.pdf','service_summary_2014_07_20.pdf','service_summary_2014_08_31.pdf','service_summary_2014_10_12.pdf','service_summary_2014_11_23.pdf',
-  // 'service_summary_2015_01_04.pdf','service_summary_2015_02_15.pdf','service_summary_2015_03_29.pdf','service_summary_2015_05_10.pdf','service_summary_2015_06_21.pdf','service_summary_2015_09_06.pdf','service_summary_2015_10_11.pdf','service_summary_2015_11_22.pdf',
+  // 'service_summary_2015_01_04.pdf',
+  //'service_summary_2015_02_15.pdf','service_summary_2015_03_29.pdf','service_summary_2015_05_10.pdf','service_summary_2015_06_21.pdf','service_summary_2015_09_06.pdf','service_summary_2015_10_11.pdf','service_summary_2015_11_22.pdf',
   // 'service_summary_2016_01_03.pdf','service_summary_2016_02_14.pdf','service_summary_2016_03_27.pdf','service_summary_2016_05_08.pdf','service_summary_2016_06_19.pdf','service_summary_2016_07_31.pdf','service_summary_2016_09_04.pdf','service_summary_2016_10_09.pdf','service_summary_2016_11_20.pdf',
   // 'service_summary_2017_01_08.pdf','service_summary_2017_02_12.pdf','service_summary_2017_03_26.pdf','service_summary_2017_05_07.pdf','service_summary_2017_06_18.pdf','service_summary_2017_07_30.pdf','service_summary_2017_09_03.pdf','service_summary_2017_10_15.pdf','service_summary_2017_11_26.pdf',
   // 'service_summary_2018_01_07.pdf','service_summary_2018_02_18.pdf','service_summary_2018_04_01.pdf','service_summary_2018_05_13.pdf','service_summary_2018_06_24.pdf','service_summary_2018_09_02.pdf','service_summary_2018_10_07.pdf','service_summary_2018_11_18.pdf',
   // 'service_summary_2019_01_06.pdf','service_summary_2019_02_17.pdf','service_summary_2019_03_31.pdf','service_summary_2019_05_12.pdf','service_summary_2019_06_23.pdf','service_summary_2019_08_04.pdf','service_summary_2019_09_01.pdf','service_summary_2019_10_13.pdf','service_summary_2019_11_24.pdf',
-  // 'service_summary_2020_01_05.pdf','service_summary_2020_02_16.pdf','service_summary_2020_03_29.pdf','service_summary_2020_06_21.pdf','service_summary_2020_10_11.pdf','service_summary_2020_11_22.pdf',
+  // 'service_summary_2020_01_05.pdf','service_summary_2020_02_16.pdf','service_summary_2020_03_29.pdf',
+  // 'service_summary_2020_06_21.pdf',
+  'service_summary_2020_10_11.pdf',
+  // 'service_summary_2020_11_22.pdf',
   // 'service_summary_2021_01_03.pdf','service_summary_2021_02_14.pdf','service_summary_2021_03_28.pdf','service_summary_2021_05_09.pdf','service_summary_2021_06_20.pdf','service_summary_2021_08_01.pdf','service_summary_2021_09_05.pdf','service_summary_2021_10_10.pdf','service_summary_2021_11_21.pdf',
-  'service_summary_2022_01_02.pdf','service_summary_2022_02_13.pdf','service_summary_2022_03_27.pdf','service_summary_2022_05_08.pdf','service_summary_2022_06_19.pdf','service_summary_2022_07_31.pdf','service_summary_2022_09_04.pdf','service_summary_2022_11_20.pdf',
-  'service_summary_2023_01_08.pdf','service_summary_2023_02_12.pdf','service_summary_2023_03_26.pdf','service_summary_2023_05_07.pdf'
+  // 'service_summary_2022_01_02.pdf','service_summary_2022_02_13.pdf','service_summary_2022_03_27.pdf','service_summary_2022_05_08.pdf','service_summary_2022_06_19.pdf','service_summary_2022_07_31.pdf','service_summary_2022_09_04.pdf','service_summary_2022_11_20.pdf',
+  // 'service_summary_2023_01_08.pdf','service_summary_2023_02_12.pdf','service_summary_2023_03_26.pdf','service_summary_2023_05_07.pdf'
 ];
 
 // const allFiles = ['service_summary_2021_10_10.pdf'];
@@ -54,10 +59,11 @@ const allFiles = [
 
 const yards = {
   "Arr": "Arror Road", // probably
+  "Hill": "Hillcrest", // probably
   "Arw": "Arrow Road", "Bir": "Birchmount", "DanSub": "Danforth Subway", "Egl": "Eglinton",
   "GrnSub": "Greenwood Subway", "Les": "Leslie", "Mal": "Malvern", "McN": "McNicoll",
-  "MtD": "Mount Dennis", "Qsy": "Queensway", "Ron": "Roncesvalles", "Rus": "Russell",
-  "WilSub": "Wilson Subway", "W-T": "Wheel-Trans", "Wil": "Wilson Bus"
+  "MtD": "Mount Dennis", "Qsy": "Queensway", "Ron": "Roncesvalles", "Rus": "Russell", "Russ": "Russell",
+  "WilSub": "Wilson Subway", "W-T": "Wheel-Trans", "Wil": "Wilson Bus",
 };
 
 const vehicleNames = {
@@ -99,8 +105,10 @@ const text_to_skip = [
   'EXPRESS BUS SERVICES',
   'OVERNIGHT BUS SERVICES',
   'COMMUNITY BUS SERVICES',
+  'ALL SERVICES',
   'COMMUNITY BUS',
   'COMMUNITY LINK',
+  'SUBWAY',
   ...subServiceTitles,
   'Sunday evening',
   'Saturday early evening',
@@ -115,6 +123,8 @@ const text_to_skip = [
   'Temporarily suspended.',
   'Temporarily Suspended',
   'Gap Trains',
+  'U', // i think this is the wheelchair symbol
+  'and', // this one is gonna be a problem, with route 11 and 28
 ];
 
 const text_to_replace = {
@@ -171,7 +181,7 @@ const parseFile = async (filename) => {
 
   for (let pageNum = START_PAGE; pageNum <= numPages; pageNum++) {
     if (done) break;
-    // if (pageNum != 58) continue; // kbfu
+    // if (pageNum != 5) continue; // kbfu
     // if (pageNum > 56) continue;
 
     const page = await doc.getPage(pageNum);
@@ -201,39 +211,40 @@ const parseFile = async (filename) => {
     }
 
     if (textContent.items.length < 20) {
-      console.log(`skipping page ${pageNum}`);
+      console.log(`skipping page ${pageNum} (too few items)`);
       continue;
     }
 
-    let headerBBox = {};
+    let primaryCorner = { x: 0, y: 0 }; // start of summary data (excludes header text, excludes route name, round trip distances, last changes, yards)
+    let secondaryCorner = { x: 1000, y: 1000 }; // top left corner of "RT Dist (km)"
 
     for (var j = 0 ; j < textContent.items.length ; j++) {
       const textItem = textContent.items[j];
       let { str } = textItem;
       let { x, y, w, h } = getCoords(viewport, textItem);
-      if (str === 'RT dist (km)') {
-        headerBBox.x = x;
-        headerBBox.y = y;
-        headerBBox.w = w;
+      if (str === 'Route') {
+        primaryCorner.y = Math.max(primaryCorner.y, y + h);
+      } else if (str === 'RT dist (km)') {
+        primaryCorner.x = Math.max(primaryCorner.x, x + w);
+        secondaryCorner.x = Math.min(secondaryCorner.x, x);
+        secondaryCorner.y = Math.min(secondaryCorner.y, y);
       } else if (str === 'last change') {
-        headerBBox.h = y + h - headerBBox.y;
+        primaryCorner.x = Math.max(primaryCorner.x, x + w);
+        primaryCorner.y = Math.max(primaryCorner.y, y + h);
+        secondaryCorner.x = Math.min(secondaryCorner.x, x);
       }
     }
 
-    if (Object.keys(headerBBox).length !== 4) {
-      console.log(`skipping page ${pageNum}`);
+    if (primaryCorner.x === 0) {
+      console.log(`skipping page ${pageNum} (header not found)`);
       continue;
     }
-    console.log({headerBBox})
 
     for (var j = 0 ; j < textContent.items.length ; j++) {
       const textItem = textContent.items[j];
       let { str } = textItem;
 
       if (str === '' || str === ' ' || str === '–' || str.slice(0, 5) == 'Page ') continue;
-      // if (j < 20) {
-      //   console.log({ j, str });
-      // }
 
       if (text_to_skip.includes(str)) continue;
       if (text_to_replace[str] != null) str = text_to_replace[str];
@@ -254,8 +265,8 @@ const parseFile = async (filename) => {
       const prevBranch = states.branch[states.branch.length - 1];
       const prevYard   = states.yard[states.yard.length - 1];
 
-      if (y > 80) { // not the header
-        if (x < 50) { // first column, routes / services / branches
+      if (y > primaryCorner.y) { // not part of the header at all
+        if (x < secondaryCorner.x) { // first column, routes / services / branches
           if (str.replace('McCOWAN', 'MCCOWAN') === str.toUpperCase() && parseInt(str)) { // all caps, starts with number
             states.route.push({ y, h, str });
           } else if (prevRoute && prevRoute.str.slice(-1) === '/') {
@@ -268,20 +279,24 @@ const parseFile = async (filename) => {
             states.branch.push({ y, h, str });
           } else if (parseInt(str) && parseInt(str) === parseInt(prevRoute.str)) { // if line "parseInt" matches route "parseInt" then it's a branch
             states.branch.push({ y, h, str });
+          } else if (parseInt(str) && parseInt(str) != undefined && parseInt(prevRoute.str) != undefined) { // if line "parseInt" doesn't matches but it's still a number at least
+            states.branch.push({ y, h, str });
+            console.log({ msg: `branch is weird, route: ${prevRoute.str}`, pageNum, x, y, str }); // this should never console.log anything
           } else if (str === 'GAP TRAINS') {
             states.branch.push({ y, h, str });
-          } else if (prevBranch && prevBranch.str.slice(-1) === '–') { // if prev end in "-" then simply append to that
+          } else if (prevBranch && (prevBranch.str.slice(-1) === '–' || prevBranch.str.slice(-1) === '-')) { // if prev end in "-" then simply append to that
             prevBranch.str += ` ${str}`; prevBranch.h = y + h - prevBranch.y;
           } else if (prevBranch && prevBranch.str.slice(-4) === ' via') { // if prev end in "-" then simply append to that
             prevBranch.str += ` ${str}`; prevBranch.h = y + h - prevBranch.y;
-          } else if (str.trim().slice(0, 7) === 'SB via ' || str.trim().slice(0, 4) === 'via ' || str.trim().slice(0, 2) === '– ') {
+          } else if (str.trim().slice(0, 7) === 'SB via ' || str.trim().slice(0, 4) === 'via ' || str.trim().slice(0, 4) === 'Via ' || str.trim().slice(0, 2) === '– ' || str.trim().slice(0, 1) === '(') {
             prevBranch.str += ` ${str.trim()}`; prevBranch.h = y + h - prevBranch.y;
           } else {
-            // console.log({ pageNum, x, y, a: str === str.toUpperCase(), b:parseInt(str) }, 'what: ' + str); // this should never console.log anything
+            states.branch.push({ y, h, str });
+            if (str != 'Combined/Average') {
+              console.log({ msg: 'branch is weird', pageNum, x, y, str }); // this should never console.log anything
+            }
           }
-        } else if (x < 180) { // special things like 'Combined/Average'
-          states.branch.push({ y, h, str });
-        } else if (x < 210) { // last change, yard and round trip distance 'column'
+        } else if (x <= primaryCorner.x) { // last change, yard and round trip distance 'column'
           if (str.split('-').length === 3) {
             states.last_change.push({ y, h, str });
           } else if (parseFloat(str) == str) {
@@ -301,7 +316,7 @@ const parseFile = async (filename) => {
           str = str.replace('"', '').replace("'", '').replace("'", '').replace("'", '').replace('  ', ' ').trim();
           data_cells.push({ x, y, w, h, str });
         }
-      } else if (x >= 210 && y > 50) { // header
+      } else if (x >= primaryCorner.x && y >= secondaryCorner.y) { // header
         if (str === 'SERVICE SUMMARY') { // only happens at the end of the document
           done = true;
           break;
