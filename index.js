@@ -20,24 +20,21 @@ const START_PAGE = 1;
 const pdfPath = 'service_summaries/';
 // const pdfPath = '/Users/kevin/Documents/ttc/'; 
 const allFiles = [
-  // 'service_summary_2008_03_30.pdf',
-  // 'service_summary_2008_06_22.pdf','service_summary_2008_08_31.pdf','service_summary_2008_11_23.pdf',
+  // 'service_summary_2008_03_30.pdf','service_summary_2008_06_22.pdf','service_summary_2008_08_31.pdf','service_summary_2008_11_23.pdf',
   // 'service_summary_2009_01_04.pdf','service_summary_2009_02_15.pdf','service_summary_2009_05_10.pdf','service_summary_2009_06_21-v2.pdf','service_summary_2009_09_06.pdf','service_summary_2009_10_18-rev.pdf','service_summary_2009_11_22.pdf',
-  // 'service_summary_2010_01_03.pdf','service_summary_2010_03_28_v2.pdf','service_summary_2010_05_09.pdf','service_summary_2010_06_20.pdf','service_summary_2010_09_05.pdf','service_summary_2010_10_10.pdf','service_summary_2010_11_21.pdf',
-  // 'service_summary_2011_01_02.pdf','service_summary_2011_03_27_rev_2.pdf','service_summary_2011_05_08.pdf','service_summary_2011_06_19.pdf','service_summary_2011_09_04.pdf','service_summary_2011_10_09.pdf',
+  // 'service_summary_2010_01_03.pdf','service_summary_2010_03_28_v2.pdf',
+  // 'service_summary_2010_05_09.pdf','service_summary_2010_06_20.pdf','service_summary_2010_09_05.pdf','service_summary_2010_10_10.pdf','service_summary_2010_11_21.pdf',
+  // "GOOD" as of May 28 2023
+  'service_summary_2011_01_02.pdf','service_summary_2011_03_27_rev_2.pdf','service_summary_2011_05_08.pdf','service_summary_2011_06_19.pdf','service_summary_2011_09_04.pdf','service_summary_2011_10_09.pdf',
   // 'service_summary_2012_01_08.pdf','service_summary_2012_02_12.pdf','service_summary_2012_03_25.pdf','service_summary_2012_05_06.pdf','service_summary_2012_06_17.pdf','service_summary_2012_07_29.pdf','service_summary_2012_09_02.pdf','service_summary_2012_10_07.pdf','service_summary_2012_11_18.pdf',
   // 'service_summary_2013_01_06.pdf','service_summary_2013_03_31.pdf','service_summary_2013_05_12.pdf','service_summary_2013_06_23.pdf','service_summary_2013_09_01.pdf','service_summary_2013_10_13.pdf','service_summary_2013_11_24.pdf',
   // 'service_summary_2014_01_05.pdf','service_summary_2014_03_30.pdf','service_summary_2014_05_11.pdf','service_summary_2014_06_22.pdf','service_summary_2014_07_20.pdf','service_summary_2014_08_31.pdf','service_summary_2014_10_12.pdf','service_summary_2014_11_23.pdf',
-  // 'service_summary_2015_01_04.pdf',
-  //'service_summary_2015_02_15.pdf','service_summary_2015_03_29.pdf','service_summary_2015_05_10.pdf','service_summary_2015_06_21.pdf','service_summary_2015_09_06.pdf','service_summary_2015_10_11.pdf','service_summary_2015_11_22.pdf',
+  // 'service_summary_2015_01_04.pdf','service_summary_2015_02_15.pdf','service_summary_2015_03_29.pdf','service_summary_2015_05_10.pdf','service_summary_2015_06_21.pdf','service_summary_2015_09_06.pdf','service_summary_2015_10_11.pdf','service_summary_2015_11_22.pdf',
   // 'service_summary_2016_01_03.pdf','service_summary_2016_02_14.pdf','service_summary_2016_03_27.pdf','service_summary_2016_05_08.pdf','service_summary_2016_06_19.pdf','service_summary_2016_07_31.pdf','service_summary_2016_09_04.pdf','service_summary_2016_10_09.pdf','service_summary_2016_11_20.pdf',
   // 'service_summary_2017_01_08.pdf','service_summary_2017_02_12.pdf','service_summary_2017_03_26.pdf','service_summary_2017_05_07.pdf','service_summary_2017_06_18.pdf','service_summary_2017_07_30.pdf','service_summary_2017_09_03.pdf','service_summary_2017_10_15.pdf','service_summary_2017_11_26.pdf',
   // 'service_summary_2018_01_07.pdf','service_summary_2018_02_18.pdf','service_summary_2018_04_01.pdf','service_summary_2018_05_13.pdf','service_summary_2018_06_24.pdf','service_summary_2018_09_02.pdf','service_summary_2018_10_07.pdf','service_summary_2018_11_18.pdf',
   // 'service_summary_2019_01_06.pdf','service_summary_2019_02_17.pdf','service_summary_2019_03_31.pdf','service_summary_2019_05_12.pdf','service_summary_2019_06_23.pdf','service_summary_2019_08_04.pdf','service_summary_2019_09_01.pdf','service_summary_2019_10_13.pdf','service_summary_2019_11_24.pdf',
-  // 'service_summary_2020_01_05.pdf','service_summary_2020_02_16.pdf','service_summary_2020_03_29.pdf',
-  // 'service_summary_2020_06_21.pdf',
-  'service_summary_2020_10_11.pdf',
-  // 'service_summary_2020_11_22.pdf',
+  // 'service_summary_2020_01_05.pdf','service_summary_2020_02_16.pdf','service_summary_2020_03_29.pdf','service_summary_2020_06_21.pdf','service_summary_2020_10_11.pdf','service_summary_2020_11_22.pdf',
   // 'service_summary_2021_01_03.pdf','service_summary_2021_02_14.pdf','service_summary_2021_03_28.pdf','service_summary_2021_05_09.pdf','service_summary_2021_06_20.pdf','service_summary_2021_08_01.pdf','service_summary_2021_09_05.pdf','service_summary_2021_10_10.pdf','service_summary_2021_11_21.pdf',
   // 'service_summary_2022_01_02.pdf','service_summary_2022_02_13.pdf','service_summary_2022_03_27.pdf','service_summary_2022_05_08.pdf','service_summary_2022_06_19.pdf','service_summary_2022_07_31.pdf','service_summary_2022_09_04.pdf','service_summary_2022_11_20.pdf',
   // 'service_summary_2023_01_08.pdf','service_summary_2023_02_12.pdf','service_summary_2023_03_26.pdf','service_summary_2023_05_07.pdf'
@@ -122,16 +119,154 @@ const text_to_skip = [
   'Temporarily Suspended.',
   'Temporarily suspended.',
   'Temporarily Suspended',
-  'Gap Trains',
   'U', // i think this is the wheelchair symbol
   'and', // this one is gonna be a problem, with route 11 and 28
+  'U and', // and sometimes this service_summary_2011_01_02.pdf
+  'Continued',
+  'See also 508 LAKE SHORE',
+  'See 502 DOWNTOWNER',
+  'No service', // 2008_03_30
+  'November 23 to December 20, 2008 only',
+  'For bus service on Roncesvalles',
+  'see 501 QUEEN',
 ];
 
 const text_to_replace = {
-  'Overnight, 7 days a week': 'Overnight - 7 days a week',
+  'Overnight, 7 days a week':    'Overnight - 7 days a week',
   'Overnight, Monday to Friday': 'Overnight - Monday to Friday',
-  'Overnight, Saturday': 'Overnight - Saturday',
-  'Overnight, Sunday': 'Overnight - Sunday',
+  'Overnight, Saturday':         'Overnight - Saturday',
+  'Overnight, Sunday':           'Overnight - Sunday',
+  'Mar/05': '01-Mar-05', // route 404 at (in service_summary_2015_01_04.pdf)
+  'Mar-05': '01-Mar-05', // route 404 at (in service_summary_2011_01_02.pdf)
+  "85 Sheppard-Yonge Stn – Mead'vale": "85 Sheppard-Yonge Station – Meadowvale",
+  "85 Sheppard-Yonge Stn-Mead'vale":   "85 Sheppard-Yonge Station – Meadowvale",
+  "York University, Express":          "York University Express",
+  'Ron Arw/Bir': 'Ron/Arw/Bir',
+  'Ron/Rus Qsy': 'Ron/Rus/Qsy',
+  'Ron/Arw/Mt': 'Ron/Arw/MtD',
+  'D/Wil': '/Wil',
+  "Exhibition (Princes' Gates)": "Exhibition (Princes Gates)",
+  "29D To Exhibition (Princes' Gates)": "29D To Exhibition (Princes Gates)",
+  'QUEENSWAY and WILSON DIVISIONS': 'QUEENSWAY AND WILSON DIVISIONS',
+  // "22 COXWELL and 70 O'CONNOR": "22 COXWELL and 70 O'CONNOR",
+
+  // '777 SERVICE RELIEF BUSES -',
+  // 'QUEENSWAY and WILSON DIVISIONS',
+};
+
+const branch_text_to_always_append = [
+  'Stn', 'Ave', 'Quay', 'Docks', 'Express',
+  'Express via Sentinel',
+  'Express via Downsview Stn',
+  'Highway 400',
+  'Stn via Kingston Rd',
+  'Park Stn via Kingston Rd',
+];
+
+const additional_valid_branches = [
+  'Standby – Downtown Gap Bus',
+  'Standby cars',
+  'Standby cars – Russell',
+  'Standby cars – Roncesvalles',
+  'Standby buses',
+  'Standby buses – Wilson',
+  'Standby buses – Arrow Rd',
+  'Standby buses – Eglinton',
+  'Standby buses – Queensway',
+  'Standby buses – Birchmount',
+  'Service relief buses',
+  'Service relief buses – Wilson',
+  'Service relief buses – Malvern',
+  'Service relief buses – Eglinton',
+  'Service relief buses – Eglinton West Stn',
+  'Service relief buses – Arrow Road Division',
+  'Combined/Average',
+  'GAP TRAINS',
+  'Gap Trains',
+];
+
+const text_is_a_route = [
+  '16 McCOWAN',
+  '129 McCOWAN NORTH',
+  '198 U of T SCARBOROUGH ROCKET',
+  '302 DANFORTH RD-McCOWAN', // weird they changed the name i guess
+  '302 KINGSTON RD-McCOWAN', // weird they changed the name i guess
+  '502 DOWNTOWNER and',
+  '169 HUNTINGWOOD and',
+  "22 COXWELL and 70 O'CONNOR",
+];
+
+const create_route_if_not_exists = {
+  '301 Long Branch – Neville Park': '301 QUEEN',
+  '301 Long Branch-Neville Park': '301 QUEEN',
+  '41 Keele Stn –': '41 KEELE',
+  '107B Downsview Stn – Rutherford Go Stn via': '107 KEELE NORTH',
+  "85 Sheppard-Yonge Station – Meadowvale": '85 SHEPPARD EAST',
+  '86 Kennedy Stn-Sheppard': '86 SCARBOROUGH',
+  '96A York Mills Stn – Carrier Dr': '96 WILSON',
+  '96A York Mills Stn-Carrier Dr': '96 WILSON',
+  '29 Wilson Stn-': '29 DUFFERIN',
+  '29 Wilson Stn-Exhibition (Dufferin Gate)': '29 DUFFERIN',
+  '504 Roncesvalles Car House-Broadview Stn': '504 KING',
+  '504 Dundas West Stn-Broadview Stn': '504 KING',
+  '512 St Clair Stn-Lansdowne': '512 ST CLAIR',
+  '505 Dundas West Stn – Broadview Stn': '505 DUNDAS',
+};
+
+const create_service_if_not_exists = {
+  '301 Long Branch – Neville Park': 'Overnight - 7 days a week',
+  '301 Long Branch-Neville Park': 'Overnight - 7 days a week',
+  '503 Victoria Park-York': 'Monday to Friday',
+  '172 Union Stn-': 'Monday to Friday',
+  '193 EXHIBITION ROCKET': 'Monday to Friday',
+  '28 Davisville Stn – Bayview': 'Monday to Friday',
+  '28 Davisville Stn-Bayview': 'Monday to Friday',
+};
+
+const ignore_branch_if_last_branch_was = {
+  '85 To Sheppard-Yonge Stn': "85 Sheppard-Yonge Station – Meadowvale",
+  '85 To Meadowvale': "85 Sheppard-Yonge Station – Meadowvale",
+
+  '85A To Don Mills Stn': '85A Don Mills Stn – Rouge Hill GO Stn',
+  '85A To Rouge Hill GO Stn': '85A Don Mills Stn – Rouge Hill GO Stn',
+
+  '85A To Don Mills Stn': '85C Don Mills Stn – Meadowvale',
+  '85 To Meadowvale': '85C Don Mills Stn – Meadowvale',
+
+  '85A To Don Mills Stn via Toronto Zoo': '85D Don Mills Stn – Rouge Hill GO Stn via Toronto Zoo',
+  '85A To Rouge Hill GO Stn via Toronto Zoo': '85D Don Mills Stn – Rouge Hill GO Stn via Toronto Zoo',
+
+  '85A To Don Mills Stn': '85F Don Mills Stn – Toronto Zoo',
+  '85B To Toronto Zoo': '85F Don Mills Stn – Toronto Zoo',
+
+  '85 To Sheppard-Yonge Stn': '85J Sheppard-Yonge Stn – Don Mills Stn',
+  '85A To Don Mills Stn': '85J Sheppard-Yonge Stn – Don Mills Stn',
+
+  '85 To Sheppard-Yonge Stn': '85G Shep-Yonge Stn – Rouge Hill GO Stn',
+  '85A To Rouge Hill GO Stn': '85G Shep-Yonge Stn – Rouge Hill GO Stn',
+
+  '85 To Sheppard-Yonge Stn': '85B Sheppard-Yonge Stn – Toronto Zoo',
+  '85B To Toronto Zoo': '85B Sheppard-Yonge Stn – Toronto Zoo',
+
+  '29 To Exhibition (Dufferin Gate)': '29 Wilson Stn-Exhibition (Dufferin Gate)',
+  '29 To Wilson Stn': '29 Wilson Stn-Exhibition (Dufferin Gate)',
+
+  '29D To Exhibition (Princes Gates)': '29D Wilson Stn-Exhibition (Princes Gates)',
+  '29 To Wilson Stn': '29D Wilson Stn-Exhibition (Princes Gates)',
+
+  '29 To Exhibition (Dufferin Gate)': '29A Tycos Dr-Exhibition (Dufferin Gate)',
+  '29A To Tycos': '29A Tycos Dr-Exhibition (Dufferin Gate)',
+
+
+};
+
+const conjoined_routes_for_some_reason = {
+  '10':  [169], '169': [10],
+  '11':  [28],  '28':  [11],
+  '22':  [70],  '70':  [22],
+  '501': [301], '301': [501],
+  '502': [503], '503': [502],
+  '506': [306], '306': [506],
 };
 
 const skip_page_strings = [
@@ -144,6 +279,11 @@ const skip_page_strings = [
 
 const end_of_document_strings = [
   'Summary of vehicles and trains in service',
+];
+
+const months = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
 ];
 
 const testCollideX = (a, b) => {
@@ -181,7 +321,7 @@ const parseFile = async (filename) => {
 
   for (let pageNum = START_PAGE; pageNum <= numPages; pageNum++) {
     if (done) break;
-    // if (pageNum != 5) continue; // kbfu
+    // if (pageNum != 48) continue; // kbfu
     // if (pageNum > 56) continue;
 
     const page = await doc.getPage(pageNum);
@@ -211,7 +351,7 @@ const parseFile = async (filename) => {
     }
 
     if (textContent.items.length < 20) {
-      console.log(`skipping page ${pageNum} (too few items)`);
+      // console.log(`skipping page ${pageNum} (too few items)`);
       continue;
     }
 
@@ -236,20 +376,54 @@ const parseFile = async (filename) => {
     }
 
     if (primaryCorner.x === 0) {
-      console.log(`skipping page ${pageNum} (header not found)`);
+      // console.log(`skipping page ${pageNum} (header not found)`);
       continue;
     }
+
+    // let cellsYXSorted = [];
+    // for (var j = 0 ; j < textContent.items.length ; j++) {
+    //   const textItem = textContent.items[j];
+    //   let { str } = textItem;
+
+    //   if (str === '' || str === ' ' || str === '–' || str.slice(0, 5) == 'Page ') continue;
+    //   let { x, y, w, h } = getCoords(viewport, textItem);
+    //   const nextCell = textContent.items[j + 1];
+    //   let { x: nextX, y: nextY, w: nextW, h: nextH } = getCoords(viewport, nextCell);
+
+    //   if (nextCell && nextY === y && nextH === h && nextX === x + w) {
+    //     j++;
+    //     str += nextCell.str;
+    //     w += nextW;
+    //   }
+
+    //   if (text_to_skip.includes(str)) continue;
+    //   if (text_to_replace[str] != null) str = text_to_replace[str];
+
+    //   cellsYXSorted.push({ x, y, w, h, str });
+    // }
+
+    // cellsYXSorted.sort((a, b) => a.y === b.y ? a.x - b.x : a.y - b.y);
+
+    // for (var j = 0 ; j < cellsYXSorted.length ; j++) {
+    //   let { x, y, w, h, str } = cellsYXSorted[j];
 
     for (var j = 0 ; j < textContent.items.length ; j++) {
       const textItem = textContent.items[j];
       let { str } = textItem;
 
       if (str === '' || str === ' ' || str === '–' || str.slice(0, 5) == 'Page ') continue;
+      let { x, y, w, h } = getCoords(viewport, textItem);
+      const nextCell = textContent.items[j + 1];
+      let { x: nextX, y: nextY, w: nextW, h: nextH } = getCoords(viewport, nextCell);
+
+      if (nextCell && nextY === y && nextH === h && nextX === x + w) {
+        j++;
+        str += nextCell.str;
+        w += nextW;
+      }
 
       if (text_to_skip.includes(str)) continue;
       if (text_to_replace[str] != null) str = text_to_replace[str];
-
-      let { x, y, w, h } = getCoords(viewport, textItem);
 
       if (skip_page_strings.includes(str)) {
         skipPage = true;
@@ -261,40 +435,90 @@ const parseFile = async (filename) => {
         break;
       }
 
+      if (create_route_if_not_exists[str] !== undefined && states.route.length === 0) {
+        states.route.push({ y: y - h, h, str: create_route_if_not_exists[str] });
+      }
+
+      if (create_service_if_not_exists[str] !== undefined && states.service.length === 0) {
+        states.service.push({ y: y - h, h, str: create_service_if_not_exists[str] });
+        states.last_change.push({ y: y - h, h, str: '' });
+      }
+
       const prevRoute  = states.route[states.route.length - 1];
       const prevBranch = states.branch[states.branch.length - 1];
       const prevYard   = states.yard[states.yard.length - 1];
 
+      if (ignore_branch_if_last_branch_was[str] !== undefined && prevBranch && prevBranch.str === ignore_branch_if_last_branch_was[str]) {
+        continue;
+      }
+
+      // something like 'February 14 to March 21, 2010'
+      if (str.split(' ').length === 6) {
+        const bits = str.split(' ');
+        if (filename.slice(16, 18) === '20' && months.includes(bits[0]) && months.includes(bits[3])) continue;
+      }
+
       if (y > primaryCorner.y) { // not part of the header at all
         if (x < secondaryCorner.x) { // first column, routes / services / branches
-          if (str.replace('McCOWAN', 'MCCOWAN') === str.toUpperCase() && parseInt(str)) { // all caps, starts with number
-            states.route.push({ y, h, str });
+          if (str === '8' || str === '8\x03') { // some sort of shit encoding thing for a wheelchair logo
+            // console.log("'8' isn't a route/service/branch on it's own");
+          } else if (text_is_a_route.includes(str) || (str === str.toUpperCase() && parseInt(str) && str.length > 3)) { // all caps, starts with number
+            states.route.push({ x, y, h, str });
+            if (str.search(',') !== -1) console.log(`new route "${str}" has a comma`);
+            if (debug) console.log(`new route ${str}`);
           } else if (prevRoute && prevRoute.str.slice(-1) === '/') {
-            prevRoute.str += ` ${str}`; prevRoute.h = y + h - prevRoute.y;
+            prevRoute.str += str.trim();
+            prevRoute.h = y + h - prevRoute.y;
+            if (str.search(',') !== -1) console.log(`append route "${str}" has a comma`);
+            if (debug) console.log(`append route ${str}`);
           } else if (['Monday to Friday', 'Saturday', 'Sunday'].includes(str) || str.slice(0, 9) === 'Overnight') { // it's a service
             states.service.push({ y, h, str });
-          } else if (str === '301 Long Branch – Neville Park' || str === '301 Long Branch-Neville Park') {
-            if (states.service.length === 0) states.service.push({ y: y - h, h, str: 'Overnight - 7 days a week' }); // a tasty exception
-            if (states.last_change.length === 0) states.last_change.push({ y: y - h, h, str: '' }); // a tasty exception
+            if (str.search(',') !== -1) console.log(`new service "${str}" has a comma`);
+            if (debug) console.log(`new service ${str}`);
+          } else if (prevRoute && parseInt(str) && parseInt(str) === parseInt(prevRoute.str)) { // if line "parseInt" matches route "parseInt" then it's a branch
             states.branch.push({ y, h, str });
-          } else if (parseInt(str) && parseInt(str) === parseInt(prevRoute.str)) { // if line "parseInt" matches route "parseInt" then it's a branch
+          } else if (prevRoute && parseInt(str) && parseInt(str) != undefined && parseInt(prevRoute.str) != undefined) { // if line "parseInt" doesn't matches but it's still a number at least
+            if ((conjoined_routes_for_some_reason[`${parseInt(str)}`] || []).includes(parseInt(prevRoute.str))) {
+              // console.log({ msg: `branch is weird, route: ${prevRoute.str}`, pageNum, x, y, str }); // this should never console.log anything
+              states.branch.push({ y, h, str });
+              if (str.search(',') !== -1) console.log(`new branch "${str}" has a comma`);
+              if (debug) console.log(`new branch ${str}`);
+            } else {
+              console.log({ msg: `branch is extra weird`, prevRoute, prevBranch, pageNum, x, y, str, textItem }); // this should never console.log anything
+              asdf
+              // states.branch.push({ y, h, str });
+            }
+          } else if (additional_valid_branches.includes(str)) {
             states.branch.push({ y, h, str });
-          } else if (parseInt(str) && parseInt(str) != undefined && parseInt(prevRoute.str) != undefined) { // if line "parseInt" doesn't matches but it's still a number at least
-            states.branch.push({ y, h, str });
-            console.log({ msg: `branch is weird, route: ${prevRoute.str}`, pageNum, x, y, str }); // this should never console.log anything
-          } else if (str === 'GAP TRAINS') {
-            states.branch.push({ y, h, str });
-          } else if (prevBranch && (prevBranch.str.slice(-1) === '–' || prevBranch.str.slice(-1) === '-')) { // if prev end in "-" then simply append to that
-            prevBranch.str += ` ${str}`; prevBranch.h = y + h - prevBranch.y;
+          } else if (prevBranch && branch_text_to_always_append.includes(str)) {
+            prevBranch.str += ` ${str}`;
+            prevBranch.h = y + h - prevBranch.y;
+            if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
+            if (debug) console.log(`append branch ${str}`);
+          } else if (prevBranch && (prevBranch.str.slice(-1) === '–' || prevBranch.str.slice(-1) === '-' || prevBranch.str.slice(-4) === ' and')) { // if prev end in "-" then simply append to that
+            prevBranch.str += ` ${str}`;
+            prevBranch.h = y + h - prevBranch.y;
+            if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
+            if (debug) console.log(`append branch ${str}`);
           } else if (prevBranch && prevBranch.str.slice(-4) === ' via') { // if prev end in "-" then simply append to that
-            prevBranch.str += ` ${str}`; prevBranch.h = y + h - prevBranch.y;
-          } else if (str.trim().slice(0, 7) === 'SB via ' || str.trim().slice(0, 4) === 'via ' || str.trim().slice(0, 4) === 'Via ' || str.trim().slice(0, 2) === '– ' || str.trim().slice(0, 1) === '(') {
-            prevBranch.str += ` ${str.trim()}`; prevBranch.h = y + h - prevBranch.y;
+            prevBranch.str += ` ${str}`;
+            prevBranch.h = y + h - prevBranch.y;
+            if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
+            if (debug) console.log(`append branch ${str}`);
+          } else if (str.trim().slice(0, 7) === 'SB via ' || str.trim().slice(0, 4) === 'via ' || str.trim().slice(0, 4) === 'Via ' || str.trim().slice(0, 2) === '– ' || str.trim().slice(0, 1) === '(' || str.trim().slice(0, 4) === 'and ' || str === 'Express') {
+            prevBranch.str += ` ${str.trim()}`;
+            prevBranch.h = y + h - prevBranch.y;
+            if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
+            if (debug) console.log(`append branch ${str}`);
+          } else if (prevRoute && str === str.toUpperCase()) {
+            prevRoute.str += ` ${str}`;
+            if (str.search(',') !== -1) console.log(`append route "${str}" has a comma`);
+            if (debug) console.log(`append route ${str}`);
           } else {
             states.branch.push({ y, h, str });
-            if (str != 'Combined/Average') {
-              console.log({ msg: 'branch is weird', pageNum, x, y, str }); // this should never console.log anything
-            }
+            // console.log(states);
+            console.log({ msg: 'branch is weird', prevRoute, prevBranch, pageNum, x, y, w, h, str }); // this should never console.log anything
+            asdf
           }
         } else if (x <= primaryCorner.x) { // last change, yard and round trip distance 'column'
           if (str.split('-').length === 3) {
@@ -302,13 +526,19 @@ const parseFile = async (filename) => {
           } else if (parseFloat(str) == str) {
             states.rt_distance.push({ y, h, str });
           } else {
-            if (states.yard.length > 0 && prevYard.str.slice(-1) == '/') {
-              prevYard.str += str; prevYard.h = y + h - prevYard.y;
+            if (prevYard && prevYard.str === 'Ron/Arw/Mt' && str == 'D/Wil') { // exceptions why not
+              prevYard.str += str.trim();
+              prevYard.h = y + h - prevYard.y;
+              str = prevYard.str;
+            } else if (states.yard.length > 0 && prevYard.str.slice(-1) == '/') {
+              prevYard.str += str.trim();
+              prevYard.h = y + h - prevYard.y;
             } else {
               states.yard.push({ y, h, str });
             }
 
-            if (!str.split('/').filter(yard => yard).map(yard => yards[yard] != undefined).every(yardExists => yardExists)) {
+            if (!str.split('/').filter(yard => yard).map(yard => yards[yard.trim()] != undefined).every(yardExists => yardExists)) {
+              console.log([prevYard.str, str]);
               console.log({ pageNum, one: str.split('/'), two: str.split('/').filter(yard => yard).map(yard => yards[yard] != undefined), msg: 'yard is weird', x, y, str });
             }
           }
@@ -324,6 +554,8 @@ const parseFile = async (filename) => {
         column_header_cells.push({ x, y, w, h, str });
       }
     }
+
+    // console.log(states)
 
     if (skipPage) continue;
     if (done) break;
