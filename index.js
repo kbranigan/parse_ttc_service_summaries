@@ -20,25 +20,32 @@ const START_PAGE = 1;
 const pdfPath = 'service_summaries/';
 // const pdfPath = '/Users/kevin/Documents/ttc/'; 
 const allFiles = [
-  // 'service_summary_2008_03_30.pdf','service_summary_2008_06_22.pdf','service_summary_2008_08_31.pdf','service_summary_2008_11_23.pdf',
-  // 'service_summary_2009_01_04.pdf','service_summary_2009_02_15.pdf','service_summary_2009_05_10.pdf','service_summary_2009_06_21-v2.pdf','service_summary_2009_09_06.pdf','service_summary_2009_10_18-rev.pdf','service_summary_2009_11_22.pdf',
-  // 'service_summary_2010_01_03.pdf','service_summary_2010_03_28_v2.pdf','service_summary_2010_05_09.pdf','service_summary_2010_06_20.pdf','service_summary_2010_09_05.pdf','service_summary_2010_10_10.pdf','service_summary_2010_11_21.pdf',
-  // 'service_summary_2011_01_02.pdf','service_summary_2011_03_27_rev_2.pdf','service_summary_2011_05_08.pdf',
-  // // 'service_summary_2011_06_19.pdf', // this file is super fucked
-  // 'service_summary_2011_09_04.pdf','service_summary_2011_10_09.pdf',
-  // 'service_summary_2012_01_08.pdf','service_summary_2012_02_12.pdf','service_summary_2012_03_25.pdf','service_summary_2012_05_06.pdf','service_summary_2012_06_17.pdf','service_summary_2012_07_29.pdf','service_summary_2012_09_02.pdf','service_summary_2012_10_07.pdf','service_summary_2012_11_18.pdf',
-  // "GOOD" as of May 28 2023    
-  'service_summary_2013_01_06.pdf','service_summary_2013_03_31.pdf','service_summary_2013_05_12.pdf','service_summary_2013_06_23.pdf','service_summary_2013_09_01.pdf','service_summary_2013_10_13.pdf','service_summary_2013_11_24.pdf',
-  // 'service_summary_2014_01_05.pdf','service_summary_2014_03_30.pdf','service_summary_2014_05_11.pdf','service_summary_2014_06_22.pdf','service_summary_2014_07_20.pdf','service_summary_2014_08_31.pdf','service_summary_2014_10_12.pdf','service_summary_2014_11_23.pdf',
-  // 'service_summary_2015_01_04.pdf','service_summary_2015_02_15.pdf','service_summary_2015_03_29.pdf','service_summary_2015_05_10.pdf','service_summary_2015_06_21.pdf','service_summary_2015_09_06.pdf','service_summary_2015_10_11.pdf','service_summary_2015_11_22.pdf',
-  // 'service_summary_2016_01_03.pdf','service_summary_2016_02_14.pdf','service_summary_2016_03_27.pdf','service_summary_2016_05_08.pdf','service_summary_2016_06_19.pdf','service_summary_2016_07_31.pdf','service_summary_2016_09_04.pdf','service_summary_2016_10_09.pdf','service_summary_2016_11_20.pdf',
-  // 'service_summary_2017_01_08.pdf','service_summary_2017_02_12.pdf','service_summary_2017_03_26.pdf','service_summary_2017_05_07.pdf','service_summary_2017_06_18.pdf','service_summary_2017_07_30.pdf','service_summary_2017_09_03.pdf','service_summary_2017_10_15.pdf','service_summary_2017_11_26.pdf',
-  // 'service_summary_2018_01_07.pdf','service_summary_2018_02_18.pdf','service_summary_2018_04_01.pdf','service_summary_2018_05_13.pdf','service_summary_2018_06_24.pdf','service_summary_2018_09_02.pdf','service_summary_2018_10_07.pdf','service_summary_2018_11_18.pdf',
-  // 'service_summary_2019_01_06.pdf','service_summary_2019_02_17.pdf','service_summary_2019_03_31.pdf','service_summary_2019_05_12.pdf','service_summary_2019_06_23.pdf','service_summary_2019_08_04.pdf','service_summary_2019_09_01.pdf','service_summary_2019_10_13.pdf','service_summary_2019_11_24.pdf',
-  // 'service_summary_2020_01_05.pdf','service_summary_2020_02_16.pdf','service_summary_2020_03_29.pdf','service_summary_2020_06_21.pdf','service_summary_2020_10_11.pdf','service_summary_2020_11_22.pdf',
-  // 'service_summary_2021_01_03.pdf','service_summary_2021_02_14.pdf','service_summary_2021_03_28.pdf','service_summary_2021_05_09.pdf','service_summary_2021_06_20.pdf','service_summary_2021_08_01.pdf','service_summary_2021_09_05.pdf','service_summary_2021_10_10.pdf','service_summary_2021_11_21.pdf',
-  // 'service_summary_2022_01_02.pdf','service_summary_2022_02_13.pdf','service_summary_2022_03_27.pdf','service_summary_2022_05_08.pdf','service_summary_2022_06_19.pdf','service_summary_2022_07_31.pdf','service_summary_2022_09_04.pdf','service_summary_2022_11_20.pdf',
-  // 'service_summary_2023_01_08.pdf','service_summary_2023_02_12.pdf','service_summary_2023_03_26.pdf','service_summary_2023_05_07.pdf'
+  'service_summary_2008_03_30.pdf','service_summary_2008_06_22.pdf','service_summary_2008_08_31.pdf','service_summary_2008_11_23.pdf',
+  'service_summary_2009_01_04.pdf','service_summary_2009_02_15.pdf','service_summary_2009_05_10.pdf','service_summary_2009_06_21-v2.pdf','service_summary_2009_09_06.pdf','service_summary_2009_10_18-rev.pdf','service_summary_2009_11_22.pdf',
+  'service_summary_2010_01_03.pdf','service_summary_2010_03_28_v2.pdf','service_summary_2010_05_09.pdf','service_summary_2010_06_20.pdf','service_summary_2010_09_05.pdf','service_summary_2010_10_10.pdf','service_summary_2010_11_21.pdf',
+  'service_summary_2011_01_02.pdf','service_summary_2011_03_27_rev_2.pdf','service_summary_2011_05_08.pdf','service_summary_2011_09_04.pdf','service_summary_2011_10_09.pdf',
+  'service_summary_2012_01_08.pdf','service_summary_2012_02_12.pdf','service_summary_2012_03_25.pdf','service_summary_2012_05_06.pdf','service_summary_2012_06_17.pdf','service_summary_2012_07_29.pdf','service_summary_2012_09_02.pdf','service_summary_2012_10_07.pdf','service_summary_2012_11_18.pdf',
+  'service_summary_2013_03_31.pdf','service_summary_2013_05_12.pdf','service_summary_2013_06_23.pdf','service_summary_2013_09_01.pdf','service_summary_2013_10_13.pdf','service_summary_2013_11_24.pdf',
+  'service_summary_2014_01_05.pdf','service_summary_2014_03_30.pdf','service_summary_2014_05_11.pdf','service_summary_2014_06_22.pdf','service_summary_2014_07_20.pdf','service_summary_2014_08_31.pdf','service_summary_2014_10_12.pdf','service_summary_2014_11_23.pdf',
+  'service_summary_2015_01_04.pdf','service_summary_2015_02_15.pdf','service_summary_2015_03_29.pdf','service_summary_2015_05_10.pdf','service_summary_2015_06_21.pdf',
+  'service_summary_2016_03_27.pdf','service_summary_2016_05_08.pdf','service_summary_2016_06_19.pdf','service_summary_2016_07_31.pdf','service_summary_2016_09_04.pdf','service_summary_2016_10_09.pdf','service_summary_2016_11_20.pdf',
+  'service_summary_2017_01_08.pdf','service_summary_2017_02_12.pdf','service_summary_2017_03_26.pdf','service_summary_2017_05_07.pdf','service_summary_2017_06_18.pdf','service_summary_2017_07_30.pdf','service_summary_2017_09_03.pdf','service_summary_2017_10_15.pdf','service_summary_2017_11_26.pdf',
+  'service_summary_2018_01_07.pdf','service_summary_2018_02_18.pdf','service_summary_2018_04_01.pdf','service_summary_2018_05_13.pdf','service_summary_2018_06_24.pdf','service_summary_2018_10_07.pdf',
+  'service_summary_2019_01_06.pdf','service_summary_2019_02_17.pdf','service_summary_2019_03_31.pdf','service_summary_2019_05_12.pdf','service_summary_2019_06_23.pdf','service_summary_2019_08_04.pdf','service_summary_2019_09_01.pdf','service_summary_2019_10_13.pdf','service_summary_2019_11_24.pdf',
+  'service_summary_2020_01_05.pdf','service_summary_2020_02_16.pdf','service_summary_2020_03_29.pdf','service_summary_2020_06_21.pdf','service_summary_2020_10_11.pdf','service_summary_2020_11_22.pdf',
+  'service_summary_2021_01_03.pdf','service_summary_2021_02_14.pdf','service_summary_2021_03_28.pdf','service_summary_2021_05_09.pdf','service_summary_2021_06_20.pdf','service_summary_2021_08_01.pdf','service_summary_2021_09_05.pdf','service_summary_2021_10_10.pdf','service_summary_2021_11_21.pdf',
+  'service_summary_2022_01_02.pdf','service_summary_2022_02_13.pdf','service_summary_2022_03_27.pdf','service_summary_2022_05_08.pdf','service_summary_2022_06_19.pdf','service_summary_2022_07_31.pdf','service_summary_2022_09_04.pdf','service_summary_2022_11_20.pdf',
+  'service_summary_2023_01_08.pdf','service_summary_2023_02_12.pdf','service_summary_2023_03_26.pdf','service_summary_2023_05_07.pdf',
+
+  // all "good" above
+  // all "bad" below
+
+  // 'service_summary_2011_06_19.pdf', // this file is super fucked
+  // 'service_summary_2013_01_06.pdf', // this file is super fucked
+  // 'service_summary_2015_09_06.pdf','service_summary_2015_10_11.pdf','service_summary_2015_11_22.pdf', // 33 has invalid branches called 135
+  // 'service_summary_2016_01_03.pdf','service_summary_2016_02_14.pdf', // 33 has invalid branches called 135
+  // 'service_summary_2018_09_02.pdf', // branch issue, 939 and branch 199 page 59
+  // 'service_summary_2018_11_18.pdf', // branch issue, 941 and branch 900 page 57
 ];
 
 // const allFiles = ['service_summary_2021_10_10.pdf'];
@@ -54,7 +61,6 @@ const allFiles = [
 //   rt_distance: { y: 102, h: 4, str: '11.34' }
 // }
 
-
 const yards = {
   "Arr": "Arror Road", // probably
   "Arrow": "Arror Road", // service_summary_2012_06_17 page 8
@@ -65,6 +71,8 @@ const yards = {
   "GrnSub": "Greenwood Subway", "Les": "Leslie", "Mal": "Malvern", "McN": "McNicoll",
   "MtD": "Mount Dennis", "Qsy": "Queensway", "Ron": "Roncesvalles", "Rus": "Russell", "Russ": "Russell",
   "WilSub": "Wilson Subway", "W-T": "Wheel-Trans", "Wil": "Wilson Bus",
+  "Will": "Wilson Subway", // service_summary_2013_11_24 page 6, 25
+  "Ronc": "Roncesvalles", // service_summary_2019_02_17 page 9
 };
 
 const vehicleNames = {
@@ -159,6 +167,15 @@ const text_to_skip = [
   'd i', // service_summary_2012_07_29 page 5 '505 Dundas West Stn - Broadview Stn'
   'i h', // service_summary_2012_09_02 page 55 '165D York Mills Stn - Major Mackenzie & Highway 400'
   'd Y', // service_summary_2012_11_18 page 58 '98A Sheppard-Yonge Stn - Peckham'
+  'moot', // service_summary_2021_11_21 page 19
+  'SUBWAY SERVICES', // service_summary_2015_09_06 page 3
+  'For service on Kingston Road:', // service_summary_2015_10_11 page 15
+  '97B operates via Yonge, Wellington, Bay, Queens', // service_summary_2017_01_08 page 41
+  '97B operates via Yonge, Queens Quay, Bay,', // service_summary_2017_01_08 page 41
+  'Northbound 102B buses operate as', // service_summary_2017_01_08 page 42
+  'Southbound 102B buses operate as', // service_summary_2017_01_08 page 42
+  '97B operates via Yonge, Queens Quay, Bay, Front', // service_summary_2017_07_30 page 42
+  'ay morning peak period', // service_summary_2018_10_07 page 15
 ];
 
 const text_to_replace = {
@@ -175,6 +192,8 @@ const text_to_replace = {
   'Ron/Rus Qsy': 'Ron/Rus/Qsy',
   'Ron/Arw/Mt': 'Ron/Arw/MtD',
   'D/Wil': '/Wil',
+  '302 DANFORTH RD-McCOWAN8\x03': '302 DANFORTH RD-McCOWAN', // service_summary_2008_06_22 page 16 - weird U
+  '129 McCOWAN NORTH8': '129 McCOWAN NORTH', // service_summary_2008_06_22 page 36 - weird U
   "Exhibition (Princes' Gates)": "Exhibition (Princes Gates)",
   // "29D To Exhibition (Princes' Gates)": "29D To Exhibition (Princes Gates)",
   // "29D Wilson Stn-Exhibition (Princes' Gt)": "29D Wilson Stn-Exhibition (Princes Gate)",
@@ -183,6 +202,8 @@ const text_to_replace = {
   'Monday to F': 'Monday to Friday', // service_summary_2012_05_06.pdf page 11
   'Monday': 'Monday to Friday', // service_summary_2012_05_06.pdf page 11
   'Monday Friday': 'Monday to Friday', // service_summary_2012_05_06.pdf page 11
+  'Monda': 'Monday to Friday', // service_summary_2012_07_29 page 36
+  'to Frida': 'Monday to Friday', // service_summary_2012_07_29 page 36
   'Eg /Qsy': 'Egl/Qsy',
   '06 May 12': '06-May-12', // service_summary_2012_06_17 page 11
   '28 Nov 09': '28-Nov-09', // service_summary_2011_09_04 page 19
@@ -202,12 +223,33 @@ const text_to_replace = {
   'Eg': 'Egl', // service_summary_2012_05_06 page 52
   'Combined Avera e': 'Combined/Average', // service_summary_2012_06_17 page 54
   'Se vice interval': 'Service interval', // service_summary_2012_06_17
-  'Monday to Fridayto Friday': 'Monday to Friday', // service_summary_2012_06_17
+  'Monday to Fridayto Friday': 'Mondayto Friday', // service_summary_2012_06_17
   'Sundayy': 'Sunday', // service_summary_2012_07_29 page 41
   'Saturdayy': 'Saturday', // service_summary_2012_11_18 page 19
   'Monday to Fridayy': 'Monday to Friday', // service_summary_2012_11_18 page 36
+  'Eg /Q y': 'Egl/Qsy', // service_summary_2013_03_31 page 44
+  'November24 to December 21, 2013': 'November 24 to December 21, 2013', // service_summary_2013_11_24 page 43
+  '501 QUEEN Continued': '501 QUEEN', // service_summary_2014_11_23 page 43
+  '94 WELLESLEY Continued': '94 WELLESLEY', // service_summary_2014_11_23 page 59
+  '510 SPADINAcontinued': '510 SPADINA', // service_summary_2015_06_21 page 11
+  'Effective June 22 to July 25, 2015': 'June 22 to July 25, 2015', // service_summary_2015_06_21 page 11
+  'Effective July 27 to September 5, 2015': 'July 27 to September 5, 2015', // service_summary_2015_06_21 page 11
+  'Effective June 21 to July 25, 2015': 'June 21 to July 25, 2015', // service_summary_2015_06_21 page 17
+  'Effective June 21 to July 10, 2015': 'June 21 to July 10, 2015', // service_summary_2015_06_21 page 20
+  'Effective June 21 to July 12, 2015': 'June 21 to July 12, 2015', // service_summary_2015_06_21 page 33
+  'Effective July 26 to September 5, 2015': 'July 26 to September 5, 2015', // service_summary_2015_06_21 page 57
+  'Ron/Rus u': 'Ron/Rus', // service_summary_2017_01_08 page 7
+  'Effective November 26 to December 16, 2017': 'November 26 to December 16, 2017', // service_summary_2017_11_26 page 19
+  'Effective December 17, 2017 to January 6, 2018': 'December 17, 2017 to January 6, 2018', // service_summary_2017_11_26 page 19
+  '01-Apr.18': '01-Apr-18', // service_summary_2018_04_01 page 46
+  '25-Jun.18': '25-Jun-18', // service_summary_2018_06_24 page 48
+  '4-Sep=18': '4-Sep-18', // service_summary_2018_10_07 page 21
+  '13--Oct-18': '13-Oct-18', // service_summary_2018_10_07 page 41
+  '01-Apr.19': '01-Apr-19', // service_summary_2019_05_12 page 34
+  "29C Wilson Stn-Exhibition (Princes' Gate)": "29C Wilson Stn-Exhibition (Princes Gate)", // service_summary_2020_02_16 page 17
+  '22/21/2021': '22-Nov-2021', // service_summary_2022_01_02 page 8
+  'DWSTN - Broadview Stn': '505 Dundas West Stn - Broadview', // service_summary_2022_02_13 page 8
 };
-
 
 const branch_text_to_always_append = [
   'Stn', 'Ave', 'Quay', 'Docks',
@@ -231,32 +273,54 @@ const branch_text_to_always_append = [
   'ard', // service_summary_2012_05_06 page 47
   'Kipling Stn - Eglinton', // service_summary_2012_09_02 page 19
   'Warden Stn - McNicoll', // service_summary_2012_10_07 page 33
-  'Kennedy Stn', // service_summary_2013_01_06 page 3
+  // 'Kennedy Stn', // service_summary_2013_01_06 page 3
+  // 'Warden', // service_summary_2013_01_06 page 3
+  // 'McCowan Stn', // service_summary_2013_01_06 page 3
+  // 'Downsview Stn', // service_summary_2013_01_06 page 3
+  // 'St Clair West Stn', // service_summary_2013_01_06 page 4
+  // 'Steeles', // service_summary_2013_01_06 page 4
+  // 'York Mills Stn', // service_summary_2013_01_06 page 4
+  'Rd', // service_summary_2016_03_27 page 56
+  'Stn Express', // service_summary_2016_05_08 page 24
+  'via', // service_summary_2018_10_07 page 47
+  'Mall', // service_summary_2018_10_07 page 47
+  'College', // service_summary_2023_01_08 page 48
+  'Centre', // service_summary_2023_03_26 page 55
 ];
 
 const additional_valid_branches = [
-  'Standby - Downtown Gap Bus',
-  'Standby cars',
-  'Standby cars - Russell',
-  'Standby cars - Roncesvalles',
-  'Standby buses',
-  'Standby buses - Wilson',
-  'Standby buses - Malvern',
-  'Standby buses - Arrow Rd',
-  'Standby buses - Eglinton',
-  'Standby buses - Queensway',
-  'Standby buses - Birchmount',
-  'Standby buses - Mount Dennis',
-  'Standby buses - Mt. Dennis', // service_summary_2012_11_18 page 51
-  'Service relief buses - Wilson',
-  'Service relief buses - Malvern',
-  'Service relief buses - Eglinton',
-  'Service relief buses - Queensway',
-  'Service relief buses - Eglinton West Stn',
-  'Service relief buses - Arrow Road Division',
+  // 'Standby - Downtown Gap Bus',
+  // 'Standby cars',
+  // 'Standby cars - Russell',
+  // 'Standby cars - Roncesvalles',
+  // 'Standby buses',
+  // 'Standby buses - Wilson',
+  // 'Standby buses - Malvern',
+  // 'Standby buses - Arrow Rd',
+  // 'Standby buses - Eglinton',
+  // 'Standby buses - Queensway',
+  // 'Standby buses - Birchmount',
+  // 'Standby buses - Mount Dennis',
+  // 'Standby buses - Mt. Dennis', // service_summary_2012_11_18 page 51
+  // 'Service relief buses - Wilson',
+  // 'Service relief buses - Malvern',
+  // 'Service relief buses - Eglinton',
+  // 'Service relief buses - Queensway',
+  // 'Service relief buses - Arrow Road',
+  // 'Service relief buses - Kipling Stn',
+  // 'Service relief buses - Eglinton West Stn',
+  // 'Service relief buses - Arrow Road Division',
   'Combined/Average',
   'GAP TRAINS',
   'Gap Trains',
+  // 'Service relief buses - Mt. Dennis', // service_summary_2013_03_31 page 44
+  '504/505 Broadview Stn - Queen & River', // service_summary_2014_07_20 page 5
+  '504/505 BUS on Broadview', // service_summary_2015_06_21 page 7
+  // 'Service relief buses - Mount Dennis', // service_summary_2015_06_21 page 57
+  // 'Standby buses - Arrow Road', // service_summary_2016_11_20 page 52
+  // 'Service relief buses - Malvern Division', // service_summary_2017_11_26 page 70
+  // 'Service relief buses - Eglinton Division', // service_summary_2017_11_26 page 70
+  '504/506 Spadina Stn-Front & Cherry', // service_summary_2022_07_31 page 7
 ];
 
 const text_is_a_route = [
@@ -268,8 +332,26 @@ const text_is_a_route = [
   '198 U of T SCARBOROUGH ROCKET',
   '302 DANFORTH RD-McCOWAN', // weird they changed the name i guess
   '302 KINGSTON RD-McCOWAN', // weird they changed the name i guess
-  '502 DOWNTOWNER and',
-  '302 DANFORTH RD-McCOWANU',
+  '502 DOWNTOWNER and', // service_summary_2018_10_07
+  '302 DANFORTH RD-McCOWANU', // service_summary_2018_10_07
+  '902 Markham Road Express', // service_summary_2018_10_07
+  '905 Eglinton East Express', // service_summary_2018_10_07
+  '913 Progress Express', // service_summary_2018_10_07
+  '924 Victoria Park Express', // service_summary_2018_10_07
+  '925 Don Mills Express', // service_summary_2018_10_07
+  '927 Highway 27 Express', // service_summary_2018_10_07
+  '929 Dufferin Express', // service_summary_2018_10_07
+  '935 Jane Express', // service_summary_2018_10_07
+  '937 Islington Express', // service_summary_2018_10_07
+  '939 Finch Express', // service_summary_2018_10_07
+  '952 Lawrence West Express', // service_summary_2018_10_07
+  '954 Lawrence East Express', // service_summary_2018_10_07
+  '960 Steeles West Express', // service_summary_2018_10_07
+  '984 Sheppard West Express', // service_summary_2018_10_07
+  '985 Sheppard East Express', // service_summary_2018_10_07
+  '989 Weston Road Express', // service_summary_2018_10_07
+  '938 Highland Creek EXPRESS', // service_summary_2021_09_05 page 52
+  '128 Stanley Greene', // service_summary_2023_03_26 page 46
 ];
 
 const create_route_if_not_exists = {
@@ -291,6 +373,16 @@ const create_route_if_not_exists = {
   '501 Long Branch - Neville Park': '501 QUEEN',
   '501 Long Branch - Russell Carhouse': '501 QUEEN',
   '320 Queens Quay - Steeles': '320 YONGE', // service_summary_2012_10_07 page 59
+  '12 Victoria Park Stn - St Clair': '12 KINGSTON RD', // service_summary_2013_11_24 page 31
+  '95A York Mills Stn - Kingston Rd': '95 YORK MILLS', // service_summary_2015_06_21 page 74
+  '511 Bathurst Stn-Exhibition': '511 BATHURST', // service_summary_2023_02_12 page 8
+  '120 Wilson Stn-Sheppard & Jane via de Havilland': '120 CALVINGTON', // service_summary_2023_05_07 page 45
+  '202 Union Stn-Cherry Beach': '202 CHERRY BEACH', // service_summary_2023_05_07 page 52
+  '83 Donlands Stn - Commissioners': '83 JONES', // service_summary_2020_10_11 page 35
+  '508 Long Branch - Parliament': '508 LAKE SHORE', // service_summary_2021_02_14 page 9
+  '506B Parliament - Main Street Stn': '506 CARLTON', // service_summary_2021_03_28 page 9
+  '134D Scarborough Centre Stn-Finch via Centennial College': '134 PROGRESS', // service_summary_2022_11_20 page 48
+  '141 King & Spadina-Lawrence': '141 DOWNTOWN/MT PLEASANT EXPRESS', // service_summary_2023_03_26 page 49
 };
 
 const create_service_if_not_exists = {
@@ -303,6 +395,11 @@ const create_service_if_not_exists = {
   '503 Victoria Park-York': 'Monday to Friday',
   '503 York - Victoria Park': 'Monday to Friday',
   // '407 Sunnybrook Hospital': 'Monday to Friday',
+  '10 Don Mills Stn - Victoria Park': 'Monday to Friday', // service_summary_2014_08_31 page 52
+  '508 Long Branch - Parliament': 'Monday to Friday', // service_summary_2021_02_14 page 9
+  '506B Parliament - Main Street Stn': '506 CARLTON', // service_summary_2021_03_28 page 9
+  '134D Scarborough Centre Stn-Finch via Centennial College': 'Sunday', // service_summary_2022_11_20 page 48
+  '141 King & Spadina-Lawrence': 'Monday to Friday', // service_summary_2023_03_26 page 49
 };
 
 const create_blank_states_if_blank = [
@@ -419,7 +516,6 @@ const parseFile = async (filename) => {
     let column_header_cells = [];
     let row_header_cells = [];
     const data_cells = [];
-    const columns = [];
     let skipPage = false;
 
     let states = {};
@@ -466,13 +562,32 @@ const parseFile = async (filename) => {
         secondaryCorner.x = Math.min(secondaryCorner.x, x);
       }
 
+      if (text_to_skip.includes(str)) continue;
+      if (text_to_replace[str] != null) str = text_to_replace[str];
+
       if (w == 0 || h == 0) continue; // junk
 
-      // something like 'February 14 to March 21, 2010' or 'February 14, 2010 to March 21, 2010'
-      if ([6, 7].includes(str.split(' ').length)) {
-        const bits = str.split(' ');
-        if (months.includes(bits[0]) && months.includes(bits[bits.length - 3])) continue;
-      }
+      const spaceBits = str.split(' ');
+
+      // something like 'August 6 to 30'
+      if (spaceBits.length === 4 && months.includes(spaceBits[0])
+        && [1,3].every(i => parseInt(spaceBits[i]) == spaceBits[i].replace(',',''))) continue;
+
+      // something like 'August 6 to August 30'
+      if (spaceBits.length === 5 && months.includes(spaceBits[0]) && months.includes(spaceBits[3])
+        && [1,4].every(i => parseInt(spaceBits[i]) == spaceBits[i].replace(',',''))) continue;
+
+      // something like 'August 6 to 30, 2013'
+      if (spaceBits.length === 5 && months.includes(spaceBits[0])
+        && [1,3,4].every(i => parseInt(spaceBits[i]) == spaceBits[i].replace(',',''))) continue;
+
+      // something like 'February 14 to March 21, 2010'
+      if (spaceBits.length === 6 && months.includes(spaceBits[0]) && months.includes(spaceBits[3])
+        && [1,4,5].every(i => parseInt(spaceBits[i]) == spaceBits[i].replace(',',''))) continue;
+
+      // something like 'December 14, 2010 to January 21, 2011'
+      if (spaceBits.length === 7 && months.includes(spaceBits[0]) && months.includes(spaceBits[4])
+        && [1,2,5,6].every(i => parseInt(spaceBits[i]) == spaceBits[i].replace(',',''))) continue;
 
       const sameIndex = cellsSortedByLength.findIndex((t) => t.x === x && t.y === y && t.str === str);
       if (sameIndex !== -1) { // duplicate found in service_summary_2011_06_19.pdf, page 11 'Scarborough Centre Stn', how annoying
@@ -506,6 +621,10 @@ const parseFile = async (filename) => {
       if (text_to_skip.includes(str)) continue;
       if (text_to_replace[str] != null) str = text_to_replace[str];
 
+      if (str === 'November 24 to December 21, 2013') {
+        asdf
+      }
+
       cellsSortedByLength.push({ x, y, w, h, j, str });
     }
     cellsSortedByLength.sort((a, b) => b.w === a.w ? a.j - b.j : b.w - a.w);
@@ -516,10 +635,13 @@ const parseFile = async (filename) => {
     }
 
     let cellsFiltered = [];
-    for (var j = 0 ; j < cellsSortedByLength.length ; j++) {
-      let { x, y, w, h, j: origJ, str } = cellsSortedByLength[j];
+    for (var i = 0 ; i < cellsSortedByLength.length ; i++) {
+      let { x, y, w, h, j, str } = cellsSortedByLength[i];
 
-      const collidesWith = cellsFiltered.filter((t) => testCollideX({ x, w }, t) && testCollideY({ y, h }, t));
+      const collidesWith = cellsFiltered
+        .filter(t => t.x < 900) // solves the weird problem where lots of first/last departures overlap a bit
+        .filter(t => t.y === y) // sigh, this is bad, but solves the problem where branch names are just barely touching
+        .filter((t) => testCollideX({ x, w }, t) && testCollideY({ y, h }, t));
       if (collidesWith.length > 1) {
         console.log({ pageNum, x, y, w, h, origJ, str, collidesWith });
         asdf
@@ -531,6 +653,11 @@ const parseFile = async (filename) => {
         } else if (x >= c.x && x <= c.x + c.w && c.str.indexOf(str) != -1) { // entirely inside and string is inside collision as well
           continue;
         }
+      }
+
+      // too wide for any branch or anything, gotta be a note
+      if (w > secondaryCorner.x) {
+        continue;
       }
 
       // // const nextIndex = cellsFiltered.findIndex((t) => t.y === y && t.h === h && (t.x === x + w - 1 || t.x === x + w || t.x === x + w + 1));
@@ -554,13 +681,13 @@ const parseFile = async (filename) => {
       //   asdf
       // }
 
-      cellsFiltered.push({ x, y, w, h, j:origJ, str });
+      cellsFiltered.push({ x, y, w, h, j, str });
     }
 
     const cellsSortedYX = cellsFiltered.sort((a, b) => a.y === b.y ? a.x - b.x : a.y - b.y);
 
-    for (var j = 0 ; j < cellsSortedYX.length ; j++) {
-      let { x, y, w, h, str } = cellsSortedYX[j];
+    for (var i = 0 ; i < cellsSortedYX.length ; i++) {
+      let { x, y, w, h, j, str } = cellsSortedYX[i];
 
       if (text_to_skip.includes(str)) continue;
 
@@ -603,7 +730,7 @@ const parseFile = async (filename) => {
       }
 
       if (y > primaryCorner.y) { // not part of the header at all
-        if (x < secondaryCorner.x) { // first column, routes / services / branches
+        if (x < secondaryCorner.x - 40) { // first column, routes / services / branches
           if (str === '8' || str === '8\x03') { // some sort of shit encoding thing for a wheelchair logo
             // console.log("'8' isn't a route/service/branch on it's own");
           } else if (text_is_a_route.includes(str) || (str === str.toUpperCase() && parseInt(str) && str.length > 3)) { // all caps, starts with number
@@ -621,6 +748,10 @@ const parseFile = async (filename) => {
             if (debug) console.log(`new service ${str}`);
           } else if (prevRoute && parseInt(str) && parseInt(str) === parseInt(prevRoute.str)) { // if line "parseInt" matches route "parseInt" then it's a branch
             states.branch.push({ y, h, str });
+          } else if (str.slice(0, 8) === 'Standby ' || str.slice(0, 15) === 'Service relief ') {
+            states.branch.push({ y, h, str });
+          } else if (additional_valid_branches.includes(str)) {
+            states.branch.push({ y, h, str });
           } else if (prevRoute && parseInt(str) && parseInt(str) != undefined && parseInt(prevRoute.str) != undefined) { // if line "parseInt" doesn't matches but it's still a number at least
             if ((conjoined_routes_for_some_reason[`${parseInt(str)}`] || []).includes(parseInt(prevRoute.str))) {
               // console.log({ msg: `branch is weird, route: ${prevRoute.str}`, pageNum, x, y, str }); // this should never console.log anything
@@ -632,8 +763,6 @@ const parseFile = async (filename) => {
               asdf
               // states.branch.push({ y, h, str });
             }
-          } else if (additional_valid_branches.includes(str)) {
-            states.branch.push({ y, h, str });
           } else if (prevBranch && branch_text_to_always_append.includes(str)) {
             prevBranch.str += ` ${str}`;
             prevBranch.h = y + h - prevBranch.y;
@@ -657,6 +786,10 @@ const parseFile = async (filename) => {
                   || str.slice(0, 1) === '('
                   || str.slice(0, 4) === 'and '
                   || str.slice(0, 7) === 'Express') {
+            if (prevBranch === undefined) {
+              console.log('oh no', {pageNum, str, states});
+              asdf
+            }
             prevBranch.str += ` ${str.trim()}`;
             prevBranch.h = y + h - prevBranch.y;
             if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
@@ -666,15 +799,15 @@ const parseFile = async (filename) => {
             if (str.search(',') !== -1) console.log(`append route "${str}" has a comma`);
             if (debug) console.log(`append route ${str}`);
           } else {
-            console.log('bad', j);
+            // console.log('bad', j);
             states.branch.push({ y, h, str });
             // console.log(states);
 
-            for (var i = j - 10 ; i < j + 10 ; i++) {
-              console.log(i, cellsSortedYX[i]);
-            }
+            // for (var k = i - 10 ; k < i + 10 ; k++) {
+            //   console.log(k, cellsSortedYX[k]);
+            // }
 
-            console.log({ msg: 'branch is weird', prevRoute, prevBranch, pageNum, x, y, w, h, str }); // this should never console.log anything
+            console.log({ msg: 'branch is weird', prevRoute, prevBranch, pageNum, x, y, w, h, j, str }); // this should never console.log anything
             asdf
           }
         } else if (x <= primaryCorner.x) { // last change, yard and round trip distance 'column'
@@ -718,7 +851,7 @@ const parseFile = async (filename) => {
           done = true;
           break;
         }
-        column_header_cells.push({ x, y, w, h, str });
+        column_header_cells.push({ x, y, w, h, j, str });
       }
     }
 
@@ -727,6 +860,7 @@ const parseFile = async (filename) => {
     if (skipPage) continue;
     if (done) break;
 
+    let columns = [];
     for (var j = 0 ; j < column_header_cells.length ; j++) {
       const cell = column_header_cells[j];
 
@@ -734,15 +868,19 @@ const parseFile = async (filename) => {
       columns.forEach((column, i) => {
         if (testCollideX(cell, column)) { // ([cell.x, cell.x + cell.w], [column.x, column.x + column.w])) {
           column_header_cells[j].columns.push(i);
+          columns[i].x = Math.min(columns[i].x, cell.x);
           columns[i].rows[cell.y] = cell.str;
           columns[i].str = Object.values(columns[i].rows).join(' ');
         }
       });
       if (column_header_cells[j].columns.length === 0) {
-        columns.push({id: columns.length, x: cell.x, w: cell.w, str: cell.str, rows: {[cell.y]: cell.str}});
+        columns.push({x: cell.x, w: cell.w, j: cell.j, str: cell.str, rows: {[cell.y]: cell.str}});
         column_header_cells[j].columns = [columns.length - 1];
       }
     }
+
+    columns = columns.sort((a, b) => a.x - b.x);
+    columns.forEach((column, i) => column.id = i);
 
     for (var j = 0 ; j < data_cells.length ; j++) {
       const cell = data_cells[j];
@@ -753,7 +891,7 @@ const parseFile = async (filename) => {
       }
     }
 
-    if (columns.length === 0) {
+    if (columns.length === 0) { // page isn't data
       break;
     }
 
