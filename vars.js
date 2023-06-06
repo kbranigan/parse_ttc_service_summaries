@@ -1,6 +1,7 @@
 
 const allFiles = [
-  'service_summary_2008_03_30.pdf','service_summary_2008_06_22.pdf','service_summary_2008_08_31.pdf','service_summary_2008_11_23.pdf',
+  'service_summary_2008_03_30.pdf',
+  // 'service_summary_2008_06_22.pdf','service_summary_2008_08_31.pdf','service_summary_2008_11_23.pdf',
   // 'service_summary_2009_01_04.pdf','service_summary_2009_02_15.pdf','service_summary_2009_05_10.pdf','service_summary_2009_06_21-v2.pdf','service_summary_2009_09_06.pdf','service_summary_2009_10_18-rev.pdf','service_summary_2009_11_22.pdf',
   // 'service_summary_2010_01_03.pdf','service_summary_2010_03_28_v2.pdf','service_summary_2010_05_09.pdf','service_summary_2010_06_20.pdf','service_summary_2010_09_05.pdf','service_summary_2010_10_10.pdf','service_summary_2010_11_21.pdf',
   // 'service_summary_2011_01_02.pdf','service_summary_2011_03_27_rev_2.pdf','service_summary_2011_05_08.pdf','service_summary_2011_09_04.pdf','service_summary_2011_10_09.pdf',
@@ -42,20 +43,43 @@ const yards = {
   "Ronc": "Roncesvalles", // service_summary_2019_02_17 page 9
 };
 
-const vehicles = {
-  "6carHT": "Six-car train of T- or TR-series 23-metre subway cars (Lines 1 and 2)",
+const vehicles = [
+  "6carT", "4carT", "4carS", "LFsc", "LF", "Bus", "ABus", "CB", "WT", // newest
+  "6carHT", "HF", "LF", "Lift", "CLRV", "ALRV", // old
+];
+
+const vehicles_names = {
   "6carT": "Six-car train of T- or TR-series 23-metre subway cars (Lines 1 and 2)",
   "4carT": "Four-car train of TR-series 23-metre subway cars (Line 4)",
   "4carS": "Four-car train of S-series 13-metre subway cars (Line 3)",
   "LFsc": "30-metre low-floor streetcar (Bombardier Flexity)",
   "Bus": "12-metre bus (Orion VII, Nova LFS)",
   "ABus": "18-metre articulated bus (Nova LFS Artic)",
-  "CB": "8-metre Community Bus (Friendly Bus)",
+  "CB": "8-metre Community Bus (Friendly Bus, Orion II)",
   "WT": "8-metre Wheel-Trans bus (Friendly Bus, ProMaster)",
+
+  // older
+  "6carHT": "Six-car train of H- or T- or TR-series 23-metre subway cars",
+  "CLRV": "15-metre high-floor streetcar (Canadian Light Rail Vehicle)",
+  "ALRV": "Articulated 23-metre high-floor streetcar (Articulated Light Rail Vehicle)",
+  "LF": "12-metre low-floor accessible bus (New Flyer D40LF, Orion VII)",
+  "Lift": "12-metre high-floor lift-equipped accessible bus (Orion V with lift and Nova RTS with lift)",
+  "HF": "12-metre high-floor bus (GM “New Look,” GM/MCI Classic, and Orion V)",
 };
+
+const services = [
+  'Monday to Friday',
+  'Saturday',
+  'Sunday',
+  'Overnight - 7 days a week',
+  'Overnight - Monday to Friday',
+  'Overnight - Saturday',
+  'Overnight - Sunday',
+];
 
 module.exports = {
   allFiles,
   yards,
   vehicles,
+  services,
 };
