@@ -222,37 +222,11 @@ const branch_text_to_always_append = [
 ];
 
 const additional_valid_branches = [
-  // 'Standby - Downtown Gap Bus',
-  // 'Standby cars',
-  // 'Standby cars - Russell',
-  // 'Standby cars - Roncesvalles',
-  // 'Standby buses',
-  // 'Standby buses - Wilson',
-  // 'Standby buses - Malvern',
-  // 'Standby buses - Arrow Rd',
-  // 'Standby buses - Eglinton',
-  // 'Standby buses - Queensway',
-  // 'Standby buses - Birchmount',
-  // 'Standby buses - Mount Dennis',
-  // 'Standby buses - Mt. Dennis', // service_summary_2012_11_18 page 51
-  // 'Service relief buses - Wilson',
-  // 'Service relief buses - Malvern',
-  // 'Service relief buses - Eglinton',
-  // 'Service relief buses - Queensway',
-  // 'Service relief buses - Arrow Road',
-  // 'Service relief buses - Kipling Stn',
-  // 'Service relief buses - Eglinton West Stn',
-  // 'Service relief buses - Arrow Road Division',
   'Combined/Average',
   'GAP TRAINS',
   'Gap Trains',
-  // 'Service relief buses - Mt. Dennis', // service_summary_2013_03_31 page 44
   '504/505 Broadview Stn - Queen & River', // service_summary_2014_07_20 page 5
   '504/505 BUS on Broadview', // service_summary_2015_06_21 page 7
-  // 'Service relief buses - Mount Dennis', // service_summary_2015_06_21 page 57
-  // 'Standby buses - Arrow Road', // service_summary_2016_11_20 page 52
-  // 'Service relief buses - Malvern Division', // service_summary_2017_11_26 page 70
-  // 'Service relief buses - Eglinton Division', // service_summary_2017_11_26 page 70
   '504/506 Spadina Stn-Front & Cherry', // service_summary_2022_07_31 page 7
 ];
 
@@ -344,38 +318,68 @@ const dont_append = [
 ];
 
 const ignore_branch_if_last_branch_was = {
-  '85 To Sheppard-Yonge Stn': "85 Sheppard-Yonge Station - Meadowvale",
-  '85 To Meadowvale': "85 Sheppard-Yonge Station - Meadowvale",
+  '85 To Sheppard-Yonge Stn': [
+    "85 Sheppard-Yonge Station - Meadowvale",
+    '85B Sheppard-Yonge Stn-Trnto Zoo',
+    '85B Sheppard-Yonge Stn - Toronto Zoo',
+    '85G Shep-Yonge Stn - Rouge Hill GO Stn',
+    '85J Shep-Yonge Stn-Don Mills Stn',
+    '85J Sheppard-Yonge Stn - Don Mills Stn',
+  ],
+  '85 To Meadowvale': [
+    "85 Sheppard-Yonge Station - Meadowvale",
+    "85C Don Mills Stn-Mead'vale",
+    '85C Don Mills Stn-Meadowvale',
+    '85C Don Mills Stn - Meadowvale',
+  ],
 
-  '85A To Don Mills Stn': '85A Don Mills Stn - Rouge Hill GO Stn',
-  '85A To Rouge Hill GO Stn': '85A Don Mills Stn - Rouge Hill GO Stn',
+  '85A To Don Mills Stn': [
+    '85 To Sheppard-Yonge Stn',
+    '85A Don Mills Stn-Rouge Hill GO Stn',
+    '85A Don Mills Stn - Rouge Hill GO Stn',
+    "85C Don Mills Stn-Mead'vale",
+    '85C Don Mills Stn-Meadowvale',
+    '85C Don Mills Stn - Meadowvale',
+    '85F Don Mills Stn-Toronto Zoo',
+    '85F Don Mills Stn - Toronto Zoo',
+    '85J Shep-Yonge Stn-Don Mills Stn',
+    '85J Sheppard-Yonge Stn - Don Mills Stn',
+  ],
+  '85A To Rouge Hill GO Stn': [
+    '85A Don Mills Stn-Rouge Hill GO Stn',
+    '85A Don Mills Stn - Rouge Hill GO Stn',
+    '85G Shep-Yonge Stn - Rouge Hill GO Stn',
+  ],
 
-  '85A To Don Mills Stn': '85C Don Mills Stn - Meadowvale',
-  '85 To Meadowvale': '85C Don Mills Stn - Meadowvale',
+  '85A To Don Mills Stn via Toronto Zoo': [
+    '85D Don Mills Stn - Rouge Hill GO Stn via Toronto Zoo',
+  ],
+  '85A To Rouge Hill GO Stn via Toronto Zoo': [
+    '85D Don Mills Stn - Rouge Hill GO Stn via Toronto Zoo',
+  ],
 
-  '85A To Don Mills Stn via Toronto Zoo': '85D Don Mills Stn - Rouge Hill GO Stn via Toronto Zoo',
-  '85A To Rouge Hill GO Stn via Toronto Zoo': '85D Don Mills Stn - Rouge Hill GO Stn via Toronto Zoo',
+  '85B To Toronto Zoo': [
+    '85 To Sheppard-Yonge Stn',
+    '85B Sheppard-Yonge Stn - Toronto Zoo',
+    '85F Don Mills Stn - Toronto Zoo',
+    '85F Don Mills Stn-Toronto Zoo',
+  ],
 
-  '85A To Don Mills Stn': '85F Don Mills Stn - Toronto Zoo',
-  '85B To Toronto Zoo': '85F Don Mills Stn - Toronto Zoo',
+  '29 To Exhibition (Dufferin Gate)': [
+    '29 Wilson Stn-Exhibition (Dufferin Gate)', 
+    '29A Tycos Dr-Exhibition (Dufferin Gate)',
+  ],
+  '29 To Wilson Stn': [
+    '29 Wilson Stn-Exhibition (Dufferin Gate)',
+    '29D Wilson Stn-Exhibition (Princes Gates)',
+  ],
 
-  '85 To Sheppard-Yonge Stn': '85J Sheppard-Yonge Stn - Don Mills Stn',
-  '85A To Don Mills Stn': '85J Sheppard-Yonge Stn - Don Mills Stn',
-
-  '85 To Sheppard-Yonge Stn': '85G Shep-Yonge Stn - Rouge Hill GO Stn',
-  '85A To Rouge Hill GO Stn': '85G Shep-Yonge Stn - Rouge Hill GO Stn',
-
-  '85 To Sheppard-Yonge Stn': '85B Sheppard-Yonge Stn - Toronto Zoo',
-  '85B To Toronto Zoo': '85B Sheppard-Yonge Stn - Toronto Zoo',
-
-  '29 To Exhibition (Dufferin Gate)': '29 Wilson Stn-Exhibition (Dufferin Gate)',
-  '29 To Wilson Stn': '29 Wilson Stn-Exhibition (Dufferin Gate)',
-
-  '29D To Exhibition (Princes Gates)': '29D Wilson Stn-Exhibition (Princes Gates)',
-  '29 To Wilson Stn': '29D Wilson Stn-Exhibition (Princes Gates)',
-
-  '29 To Exhibition (Dufferin Gate)': '29A Tycos Dr-Exhibition (Dufferin Gate)',
-  '29A To Tycos': '29A Tycos Dr-Exhibition (Dufferin Gate)',
+  '29D To Exhibition (Princes Gates)': [
+    '29D Wilson Stn-Exhibition (Princes Gates)',
+  ],
+  '29A To Tycos': [
+    '29A Tycos Dr-Exhibition (Dufferin Gate)',
+  ],
 };
 
 const conjoined_routes_for_some_reason = {
@@ -652,7 +656,7 @@ const parseFile = async (filename) => {
       const prevBranch = states.branch[states.branch.length - 1];
       const prevYard = states.yard[states.yard.length - 1];
 
-      if (ignore_branch_if_last_branch_was[str] !== undefined && prevBranch && prevBranch.str === ignore_branch_if_last_branch_was[str]) {
+      if (ignore_branch_if_last_branch_was[str] !== undefined && prevBranch && ignore_branch_if_last_branch_was[str].includes(prevBranch.str)) {
         continue;
       }
 
@@ -700,9 +704,12 @@ const parseFile = async (filename) => {
             prevBranch.h = y + h - prevBranch.y;
             if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
             if (debug) console.log(`append branch ${str}`);
-          } else if (prevBranch && (prevBranch.str.slice(-1) === '-'
-                  || prevBranch.str.slice(-1) === '-'
-                  || prevBranch.str.slice(-4) === ' and')) { // if prev end in "-" then simply append to that
+          } else if (prevBranch && (prevBranch.str.slice(-1) === '-' || prevBranch.str.slice(-1) === '-')) {
+            prevBranch.str += str;
+            prevBranch.h = y + h - prevBranch.y;
+            if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
+            if (debug) console.log(`append branch ${str}`);
+          } else if (prevBranch && prevBranch.str.slice(-4) === ' and') { // if prev end in "-" then simply append to that
             prevBranch.str += ` ${str}`;
             prevBranch.h = y + h - prevBranch.y;
             if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
@@ -756,6 +763,7 @@ const parseFile = async (filename) => {
               prevYard.str += str.trim();
               prevYard.h = y + h - prevYard.y;
             } else {
+              str = new Array(...new Set(str.replaceAll(' ', '').split('/'))).sort().join('/');
               states.yard.push({ y, h, str });
             }
 
@@ -835,6 +843,20 @@ const parseFile = async (filename) => {
     assert(columns.length === 6 * 5 + 4);
     // console.log(data_cells.slice(5, 7));
 
+    // 'Veh type', 'No. of Veh', 'Service interval', 'Run time (min)', 'Term time (min)', 'Avg spd (km/h)', 
+    // 'Veh type', 'No. of Veh', 'Service interval', 'Run time (min)', 'Term time (min)', 'Avg spd (km/h)', 
+    // 'Veh type', 'No. of Veh', 'Service interval', 'Run time (min)', 'Term time (min)', 'Avg spd (km/h)', 
+    // 'Veh type', 'No. of Veh', 'Service interval', 'Run time (min)', 'Term time (min)', 'Avg spd (km/h)', 
+    // 'Veh type', 'No. of Veh', 'Service interval', 'Run time (min)', 'Term time (min)', 'Avg spd (km/h)', 
+    // 'First dep NB or WB', 'First dep SB or EB', 'Last dep NB or WB', 'Last dep SB or EB'
+
+    const veh_type_column_ids  = [ 0, 6, 12, 18, 24 ];
+    const num_veh_column_ids   = veh_type_column_ids.map(i => i + 1);
+    const interval_column_ids  = veh_type_column_ids.map(i => i + 2);
+    const run_time_column_ids  = veh_type_column_ids.map(i => i + 3);
+    const term_time_column_ids = veh_type_column_ids.map(i => i + 4);
+    const avg_spd_column_ids   = veh_type_column_ids.map(i => i + 5);
+
     states.branch.every(branch => {
       let { route, service, yard, last_change, rt_distance } = states_at(branch);
       let csvrow;
@@ -859,13 +881,15 @@ const parseFile = async (filename) => {
       for (var column = 0 ; column < 6 * 5 + 4 ; column++) {
         const cells = row.filter(cell => cell.columns.includes(column));
         cells.forEach(cell => cell.printed = true);
-        if (cells.length == 0) {
-          csvrow.push('');
-        } else if (cells.length == 1) {
-          csvrow.push(cells[0].str);
-        } else {
-          csvrow.push(cells.map(c => c.str).join(' '))
+        // let val = cells.map(c => c.str.slice(-1) === '-' ? c.str : `${c.str} `).join('').trim() || '';
+        let val = cells.map(c => c.str).join(' ') || '';
+
+        if (veh_type_column_ids.includes(column)) {
+          val = val.replaceAll(' ', '/')
+            .split('/').map(c => c.trim()).filter(c => c).sort().join('/');
         }
+
+        csvrow.push(val);
       }
       csvrows.push(csvrow);
       return true;
