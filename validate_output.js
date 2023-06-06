@@ -94,7 +94,7 @@ const ignore_branches = [
       });
 
       num_veh_fields.map(f => line[f]).forEach(num_veh => {
-        if (num_veh != '' && parseInt(num_veh) != num_veh) {
+        if (num_veh != '' && parseFloat(num_veh) != num_veh) {
           const index = (bad.num_veh || []).findIndex(b => b.num_veh === num_veh);
           if (index !== -1) bad.num_veh[index].count ++;
           else bad.num_veh = (bad.num_veh || []).concat([{ file, page, route, branch, num_veh, count: 1 }]);

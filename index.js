@@ -443,7 +443,7 @@ const parseFile = async (filename) => {
 
   for (let pageNum = START_PAGE; pageNum <= numPages; pageNum++) {
     if (done) break;
-    // if (pageNum != 29) continue; // kbfu
+    // if (pageNum != 16) continue; // kbfu
     // if (pageNum > 56) continue;
 
     const page = await doc.getPage(pageNum);
@@ -530,7 +530,7 @@ const parseFile = async (filename) => {
       if (sameIndex !== -1) { // duplicate found in service_summary_2011_06_19.pdf, page 11 'Scarborough Centre Stn', how annoying
         continue;
       }
-      
+
       if (str === '' || str === ' ' || str === '-' || str.slice(0, 5) == 'Page ') continue;
       
       const prevIndex = cellsSortedByLength.findIndex((t) => t.y === y && t.h === h && Math.abs(t.x - x + t.w) <= 2);
@@ -806,7 +806,7 @@ const parseFile = async (filename) => {
 
       column_header_cells[j].columns = [];
       columns.forEach((column, i) => {
-        if (testCollideX(cell, column)) { // ([cell.x, cell.x + cell.w], [column.x, column.x + column.w])) {
+        if (testCollideX(cell, column)) {
           column_header_cells[j].columns.push(i);
           columns[i].x = Math.min(columns[i].x, cell.x);
           columns[i].rows[cell.y] = cell.str;
@@ -825,9 +825,11 @@ const parseFile = async (filename) => {
     for (var j = 0 ; j < data_cells.length ; j++) {
       const cell = data_cells[j];
       data_cells[j].columns = columns.filter(column => testCollideX(cell, column)).map(column => column.id);
-      // data_cells[j].columns = columns.filter(column => testCollide([cell.x, cell.x + cell.w], [column.x, column.x + column.w])).map(column => column.id);
+
       if (data_cells[j].columns.length === 1) {
         data_cells[j].states = states_at(cell);
+      } else {
+        // prolly a note (automatically made a note)
       }
     }
 
@@ -851,11 +853,39 @@ const parseFile = async (filename) => {
     // 'First dep NB or WB', 'First dep SB or EB', 'Last dep NB or WB', 'Last dep SB or EB'
 
     const veh_type_column_ids  = [ 0, 6, 12, 18, 24 ];
-    const num_veh_column_ids   = veh_type_column_ids.map(i => i + 1);
-    const interval_column_ids  = veh_type_column_ids.map(i => i + 2);
-    const run_time_column_ids  = veh_type_column_ids.map(i => i + 3);
-    const term_time_column_ids = veh_type_column_ids.map(i => i + 4);
-    const avg_spd_column_ids   = veh_type_column_ids.map(i => i + 5);
+    // const num_veh_column_ids   = veh_type_column_ids.map(i => i + 1);
+    // const interval_column_ids  = veh_type_column_ids.map(i => i + 2);
+    // const run_time_column_ids  = veh_type_column_ids.map(i => i + 3);
+    // const term_time_column_ids = veh_type_column_ids.map(i => i + 4);
+    // const avg_spd_column_ids   = veh_type_column_ids.map(i => i + 5);
+
+    states.branch.every(branch => {
+      let { route, service, yard, last_change, rt_distance } = states_at(branch);
+
+      const row = data_cells.filter(cell => cell.states 
+        && cell.states.branch === branch
+        && cell.states.route === route
+        && cell.states.service === service);
+
+      let cells = Object.fromEntries(row.filter(cell => cell.columns.length === 1).map(cell => ([parseInt(cell.columns[0]), cell])));
+      
+      const a = [0,1,2,3,4,5].map(i => cells[i]).filter(a => a);
+      const b = [6,7,8,9,10,11].map(i => cells[i]).filter(a => a);
+      const c = [12,13,14,15,16,17].map(i => cells[i]).filter(a => a);
+      const d = [18,19,20,21,22,23].map(i => cells[i]).filter(a => a);
+      const e = [24,25,26,27,28,29].map(i => cells[i]).filter(a => a);
+      const f = [30,31,32,33].map(i => cells[i]).filter(a => a);
+
+      // if it doesn't have a full summary for a timeframe, well make it a note i guess
+      if (a.length != 0 && a.length != 6) { a.forEach(cell => cell.note = true); }
+      if (b.length != 0 && b.length != 6) { b.forEach(cell => cell.note = true); }
+      if (c.length != 0 && c.length != 6) { c.forEach(cell => cell.note = true); }
+      if (d.length != 0 && d.length != 6) { d.forEach(cell => cell.note = true); }
+      if (e.length != 0 && e.length != 6) { e.forEach(cell => cell.note = true); }
+      if (f.length != 0 && f.length != 4) { f.forEach(cell => cell.note = true); }
+
+      return true; // for the 'every'
+    });
 
     states.branch.every(branch => {
       let { route, service, yard, last_change, rt_distance } = states_at(branch);
@@ -869,7 +899,8 @@ const parseFile = async (filename) => {
       const row = data_cells.filter(cell => cell.states 
         && cell.states.branch === branch
         && cell.states.route === route
-        && cell.states.service === service);
+        && cell.states.service === service
+        && cell.note == undefined);
       // console.log({ branch, route, service, yard, last_change, rt_distance, row })
       if (row.length === 0) return true;
       try {
@@ -892,7 +923,7 @@ const parseFile = async (filename) => {
         csvrow.push(val);
       }
       csvrows.push(csvrow);
-      return true;
+      return true; // for the 'every'
     });
 
     const getSubService = (cell, states) => {
