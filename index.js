@@ -109,6 +109,8 @@ const text_to_skip = [
   'Southbound 102B buses operate as', // service_summary_2017_01_08 page 42
   '97B operates via Yonge, Queens Quay, Bay, Front', // service_summary_2017_07_30 page 42
   'ay morning peak period', // service_summary_2018_10_07 page 15
+  'then', // service_summary_2008_11_23 page 59 'then'
+  't i', // service_summary_2011_09_04 page 40 'Alternates trips with 329 DUFFERIN'
 ];
 
 const text_to_replace = {
@@ -128,8 +130,6 @@ const text_to_replace = {
   '302 DANFORTH RD-McCOWAN8\x03': '302 DANFORTH RD-McCOWAN', // service_summary_2008_06_22 page 16 - weird U
   '129 McCOWAN NORTH8': '129 McCOWAN NORTH', // service_summary_2008_06_22 page 36 - weird U
   "Exhibition (Princes' Gates)": "Exhibition (Princes Gates)",
-  // "29D To Exhibition (Princes' Gates)": "29D To Exhibition (Princes Gates)",
-  // "29D Wilson Stn-Exhibition (Princes' Gt)": "29D Wilson Stn-Exhibition (Princes Gate)",
   'QUEENSWAY and WILSON DIVISIONS': 'QUEENSWAY AND WILSON DIVISIONS',
   '28 DAVISVILLE M': '28 DAVISVILLE',
   'Monday to F': 'Monday to Friday', // service_summary_2012_05_06.pdf page 11
@@ -182,6 +182,12 @@ const text_to_replace = {
   "29C Wilson Stn-Exhibition (Princes' Gate)": "29C Wilson Stn-Exhibition (Princes Gate)", // service_summary_2020_02_16 page 17
   '22/21/2021': '22-Nov-2021', // service_summary_2022_01_02 page 8
   'DWSTN - Broadview Stn': '505 Dundas West Stn - Broadview', // service_summary_2022_02_13 page 8
+  '36B Lawrence Stn-Finch Stn-Humberwood': '36B Lawrence Stn-Finch Stn via Humberwood', // service_summary_2008_06_22 page 23
+  '7 Bathurst Stn to Steeles': '7 Bathurst Stn-Steeles', // service_summary_2009_11_22 page 10
+  "29D To Exhibition (Princes' Gate)": '29D To Exhibition (Princes Gate)', // service_summary_2010_09_05 page 19
+  "29D Wilson Stn-Exhibition (Princes' Gt)": '29D Wilson Stn-Exhibition (Princes Gate)', // service_summary_2010_09_05 page 19
+  '29A Tycos Dr - Exhibition (Dufferin Gt)': '29A Tycos Dr-Exhibition (Dufferin Gate)', // service_summary_2010_09_05 page 19
+  '29DTo Exhibition (Princes Gate)': '29D To Exhibition (Princes Gate)', // service_summary_2011_09_04 page 19
 };
 
 const branch_text_to_always_append = [
@@ -220,6 +226,55 @@ const branch_text_to_always_append = [
   'College', // service_summary_2023_01_08 page 48
   'Centre', // service_summary_2023_03_26 page 55
 ];
+
+const missing_textItems = {
+  'allFiles': {
+    'allPages': [
+      { addStr: 'Combined/Average', afterStr: '39E Finch Stn-Neilson Express', index: 1 },
+      { addStr: 'Combined/Average', afterStr: '39E Finch Stn - Neilson Express', index: 1 },
+      { addStr: 'Combined/Average', afterStr: '38A Scarborough Centre Stn-U of T Scar.' },
+      { addStr: 'Combined/Average', afterStr: '38A Scarborough Centre Stn - U of T Scar.' },
+      { addStr: 'Combined/Average', afterStr: 'U of T Scarborough' }, // started service_summary_2010_10_10 page ~20
+      { addStr: 'Combined/Average', afterStr: 'of T Scarborough' }, // started service_summary_2012_02_12 page ~26
+      { addStr: 'Combined/Average', afterStr: '320A Queens Quay - York Mills Stn', index: 0 }, // started service_summary_2010_11_21, page 4 and also page ~61
+      { addStr: 'Combined/Average', afterStr: '320A Queens Quay - York Mills Stn', index: 1 }, // started service_summary_2010_11_21, page 4 and also page ~61
+      { addStr: 'Combined/Average', afterStr: '320A Queens Quay - York Mills Stn', index: 2 }, // started service_summary_2010_11_21, page 4 and also page ~61
+    ],
+  },
+  
+  'service_summary_2008_03_30.pdf': {},
+  'service_summary_2008_06_22.pdf': {},
+  'service_summary_2008_08_31.pdf': {},
+  'service_summary_2008_11_23.pdf': { '65': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2009_01_04.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2009_02_15.pdf': { '66': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2009_05_10.pdf': { '63': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 0 }], },
+  'service_summary_2009_06_21-v2.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2009_09_06.pdf': { '61': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 0 }], },
+  'service_summary_2009_10_18-rev.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2009_11_22.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2010_01_03.pdf': { '58': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2010_03_28_v2.pdf': { '58': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2010_05_09.pdf': {},
+  'service_summary_2010_06_20.pdf': { '60': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 2 }], },
+  'service_summary_2010_09_05.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 2 }], },
+  'service_summary_2010_10_10.pdf': { '56': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 2 }], },
+  'service_summary_2010_11_21.pdf': { '58': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 2 }], },
+  'service_summary_2011_01_02.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 0 }], },
+  'service_summary_2011_03_27_rev_2.pdf': { '58': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 2 }], },
+  'service_summary_2011_05_08.pdf': { '57': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2011_09_04.pdf': { '59': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2011_10_09.pdf': { '59': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 0 }], },
+  'service_summary_2012_01_08.pdf': { '59': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2012_02_12.pdf': { '63': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 0 }], },
+  'service_summary_2012_03_25.pdf': { '56': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 0 }], },
+  'service_summary_2012_05_06.pdf': { '60': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2012_06_17.pdf': { '57': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
+  'service_summary_2012_07_29.pdf': {},
+  'service_summary_2012_09_02.pdf': {},
+  'service_summary_2012_10_07.pdf': {},
+  'service_summary_2012_11_18.pdf': {},
+};
 
 const additional_valid_branches = [
   'Combined/Average',
@@ -318,8 +373,38 @@ const dont_append = [
 ];
 
 const ignore_branch_if_last_branch_was = {
+  '29 To Exhibition (Dufferin Gate)': [
+    '29 Wilson Stn-Exhibition (Dufferin Gate)', 
+    '29A Tycos Dr-Exhibition (Dufferin Gate)',
+  ],
+  '29 To Wilson Stn': [
+    '29 Wilson Stn-Queen',
+    '29 Wilson Stn-Exhibition (Dufferin Gate)',
+    '29D Wilson Stn-Exhibition (Princes Gate)',
+    '29D Wilson Stn-Exhibition (Princes Gates)',
+  ],
+  '29 To Queen': [
+    '29 Wilson Stn-Queen',
+    '29A Tycos Dr - Queen',
+  ],
+  '29 Exhibition (Dufferin Gate)': [ '29 Wilson Stn-to Exhibition (Dufferin Gate)', ],
+  '29B Ontario Place': [ '29B Wilson Stn-to Ontario Place', ],
+  '29B To Ontario Place': [ '29B Wilson Stn-Ontario Place', ],
+  '29A To Tycos': [
+    '29A Tycos Dr - Queen',
+    '29A Tycos Dr-Exhibition (Dufferin Gate)',
+  ],
+  '29D To Exhibition (Princes Gates)': [
+    '29D Wilson Stn-Exhibition (Princes Gates)',
+    '29D Wilson Stn-Exhibition (Princes Gate)',
+  ],
+  '29D To Exhibition (Princes Gate)': [
+    '29D Wilson Stn-Exhibition (Princes Gate)',
+  ],
+
   '85 To Sheppard-Yonge Stn': [
     "85 Sheppard-Yonge Station - Meadowvale",
+    '85 Sheppard-Yonge Stn - Meadowvale',
     '85B Sheppard-Yonge Stn-Trnto Zoo',
     '85B Sheppard-Yonge Stn - Toronto Zoo',
     '85G Shep-Yonge Stn - Rouge Hill GO Stn',
@@ -332,9 +417,8 @@ const ignore_branch_if_last_branch_was = {
     '85C Don Mills Stn-Meadowvale',
     '85C Don Mills Stn - Meadowvale',
   ],
-
   '85A To Don Mills Stn': [
-    '85 To Sheppard-Yonge Stn',
+    // '85 To Sheppard-Yonge Stn',
     '85A Don Mills Stn-Rouge Hill GO Stn',
     '85A Don Mills Stn - Rouge Hill GO Stn',
     "85C Don Mills Stn-Mead'vale",
@@ -350,35 +434,38 @@ const ignore_branch_if_last_branch_was = {
     '85A Don Mills Stn - Rouge Hill GO Stn',
     '85G Shep-Yonge Stn - Rouge Hill GO Stn',
   ],
-
   '85A To Don Mills Stn via Toronto Zoo': [
     '85D Don Mills Stn - Rouge Hill GO Stn via Toronto Zoo',
   ],
   '85A To Rouge Hill GO Stn via Toronto Zoo': [
     '85D Don Mills Stn - Rouge Hill GO Stn via Toronto Zoo',
   ],
-
   '85B To Toronto Zoo': [
-    '85 To Sheppard-Yonge Stn',
+    // '85 To Sheppard-Yonge Stn',
     '85B Sheppard-Yonge Stn - Toronto Zoo',
     '85F Don Mills Stn - Toronto Zoo',
     '85F Don Mills Stn-Toronto Zoo',
   ],
-
-  '29 To Exhibition (Dufferin Gate)': [
-    '29 Wilson Stn-Exhibition (Dufferin Gate)', 
-    '29A Tycos Dr-Exhibition (Dufferin Gate)',
-  ],
-  '29 To Wilson Stn': [
-    '29 Wilson Stn-Exhibition (Dufferin Gate)',
-    '29D Wilson Stn-Exhibition (Princes Gates)',
+  '85G To Sheppard Stn': [
+    '85G Sheppard Stn-Rouge Hill GO Stn',
   ],
 
-  '29D To Exhibition (Princes Gates)': [
-    '29D Wilson Stn-Exhibition (Princes Gates)',
+  '96C To Wilson Stn': [
+    '96H Wilson Stn-Thistledown via Albion',
   ],
-  '29A To Tycos': [
-    '29A Tycos Dr-Exhibition (Dufferin Gate)',
+  '96C To Thistledown via Albion': [
+    '96H Wilson Stn-Thistledown via Albion',
+    '96H Wilson Stn - Thistled. via Albion',
+  ],
+  '96F To Tandridge and Isling. via Albion': [
+    '96K Wilson Stn - Tandridge & Islington',
+    '96K Wilson Stn-Tandridge and Islington',
+  ],
+  '96S to Wilson Stn': [
+    '96H Wilson Stn-Thistledown via Albion',
+    '96H Wilson Stn - Thistled. via Albion',
+    '96K Wilson Stn-Tandridge and Islington',
+    '96K Wilson Stn - Tandridge & Islington',
   ],
 };
 
@@ -438,12 +525,12 @@ const parseFile = async (filename) => {
   const data = new Uint8Array(fs.readFileSync(pdfPath + filename));
   const doc = await pdfjsLib.getDocument({ data, useSystemFonts: true }).promise;
   const numPages = doc.numPages;
-  console.log({ filename, numPages });
+  console.log({ in: filename, pages: numPages });
   let done = false;
 
   for (let pageNum = START_PAGE; pageNum <= numPages; pageNum++) {
     if (done) break;
-    // if (pageNum != 16) continue; // kbfu
+    // if (pageNum != 40) continue; // kbfu
     // if (pageNum > 56) continue;
 
     const page = await doc.getPage(pageNum);
@@ -558,12 +645,56 @@ const parseFile = async (filename) => {
       if (text_to_skip.includes(str)) continue;
       if (text_to_replace[str] != null) str = text_to_replace[str];
 
-      if (str === 'November 24 to December 21, 2013') {
-        asdf
-      }
-
       cellsSortedByLength.push({ x, y, w, h, j, str });
     }
+
+    // const sum = (arr) => arr.reduce((partialSum, a) => partialSum + a, 0);
+    // const nonSpaceCount = (str) => sum(str.split('').map(c => c != ' ' ? 1 : 0));
+
+    for (var i = 0 ; i < cellsSortedByLength.length ; i++) {
+      const a = cellsSortedByLength[i];
+      let indices = cellsSortedByLength.map((b, j) => 
+        j != i && 
+        a.x === b.x && 
+        a.y === b.y// && 
+        // a.str === b.str
+        ? j : '').filter(String);
+      if (indices.length === 0) continue;
+      indices.push(i);
+      // sort matches by length and then length of non-space characters
+      indices = indices.sort((a, b) => 
+        cellsSortedByLength[b].str.length === cellsSortedByLength[a].str.length
+        ? cellsSortedByLength[b].str.replaceAll(' ', '').length - cellsSortedByLength[a].str.replaceAll(' ', '').length
+        : cellsSortedByLength[b].str.length - cellsSortedByLength[a].str.length);
+      // delete everything that's not the biggest
+      indices.slice(1).forEach(j => { cellsSortedByLength.splice(j, 1); i--; });
+    }
+
+    const toAdd = [
+      ...missing_textItems.allFiles?.allPages || [],
+      ...missing_textItems.allFiles?.[pageNum] || [],
+      ...missing_textItems[filename]?.allPages || [],
+      ...missing_textItems[filename]?.[pageNum] || [],
+    ];
+
+    toAdd.forEach(add => {
+      const indices = cellsSortedByLength.map((cell, i) => cell.str === add.afterStr ? i : '').filter(String);
+      if (indices.length === 0) return;
+      const anchor = cellsSortedByLength[indices[add.index || 0]];
+      if (anchor === undefined) {
+        console.log({add, anchor, indices});
+      }
+      const newCell = {
+        ...anchor,
+        ...{
+          y: anchor.y + anchor.h,
+          str: add.addStr,
+          j: cellsSortedByLength.length,
+        }
+      };
+      cellsSortedByLength.push(newCell);
+    });
+
     cellsSortedByLength.sort((a, b) => b.w === a.w ? a.j - b.j : b.w - a.w);
 
     if (primaryCorner.x === 0) {
@@ -652,6 +783,7 @@ const parseFile = async (filename) => {
         if (states.rt_distance.length === 0) states.rt_distance.push({ y: y - h, h, str: '' });
       }
 
+      const prevService = states.service[states.service.length - 1];
       const prevRoute = states.route[states.route.length - 1];
       const prevBranch = states.branch[states.branch.length - 1];
       const prevYard = states.yard[states.yard.length - 1];
@@ -666,11 +798,29 @@ const parseFile = async (filename) => {
         continue;
       }
 
+      // kbfu
+      if (1
+          // && pageNum == 23
+          && str == '96K Wilson Stn - Tandridge & Islington'
+      //     prevService.str === 'Saturday'
+      ) {
+      //   // console.log(states);
+        // console.log({ x, y, w, h, pageNum, str, prevBranch, prevService });
+        // asdf
+      }
+
+      // if (pageNum == 23 && str == 'Combined/Average') {
+      //   console.log({ x, y, w, h, str, prevBranch });
+      //   // asdf
+      // }
+
+
       if (y > primaryCorner.y) { // not part of the header at all
         if (x < secondaryCorner.x - 40) { // first column, routes / services / branches
           if (str === '8' || str === '8\x03') { // some sort of shit encoding thing for a wheelchair logo
             // console.log("'8' isn't a route/service/branch on it's own");
           } else if (text_is_a_route.includes(str) || (str === str.toUpperCase() && parseInt(str) && str.length > 3)) { // all caps, starts with number
+            if (str.slice(-1) === '8') str = str.slice(0, -1);
             states.route.push({ x, y, h, str });
             if (str.search(',') !== -1) console.log(`new route "${str}" has a comma`);
             if (debug) console.log(`new route ${str}`);
@@ -951,9 +1101,10 @@ const parseFile = async (filename) => {
         branch: cellStates.branch?.str || '',
         service: cellStates.service?.str || '',
         subservice: getSubService(cell, cellStates),
-        // x: cell.x,
-        // y: cell.y,
-        // w: cell.w,
+        columns: cell.columns,
+        x: cell.x,
+        y: cell.y,
+        w: cell.w,
         str: cell.str
       });
     });
@@ -967,8 +1118,6 @@ const parseFile = async (filename) => {
     // }
 
     page.cleanup();
-    // break;
-    // if (pageNum  > 10) break;
   }
 
   let csvheader = 'file,page,route,branch,service,yard,last_change,rt_distance'
@@ -976,17 +1125,19 @@ const parseFile = async (filename) => {
     csvheader += ',veh_type,num_veh,interval,run_time,term_time,avg_spd';
   }
   csvheader += ',first_nb_wb,first_sb_eb,last_nb_wb,last_sb_eb';
-  // console.log(csvheader);
-  // console.log(csvrows.join('\n'));
-  // console.log(notes.slice(0,2));
+
+  const outputFile = `output/${filename}.csv`;
+  const outputNoteFile = `output/${filename}.notes.csv`;
+
+  console.log({ out: `${filename}.csv`, lines: csvrows.length });
 
   if (notes.length > 0) {
     let notesheader = Object.keys(notes[0]);
-    fs.writeFileSync('output/' + filename + '.notes.csv', Object.keys(notes[0]) + "\n" + notes.map(row => '"' + Object.values(row).map(cell => `${cell}`.replace('"', '\\"')).join('", "') + '"').join("\n"));
+    fs.writeFileSync(outputNoteFile, Object.keys(notes[0]) + "\n" + notes.map(row => '"' + Object.values(row).map(cell => `${cell}`.replace('"', '\\"')).join('", "') + '"').join("\n"));
+    console.log({ out: `${filename}.notes.csv`, notes: notes.length });
   }
 
-  console.log(`${filename} - ${csvrows.length} csv lines, ${notes.length} notes`);
-  fs.writeFileSync('output/' + filename + '.csv', csvheader + "\n" + csvrows.join("\n"));
+  fs.writeFileSync(outputFile, csvheader + "\n" + csvrows.join("\n"));
   // fs.writeFileSync('output/' + filename + '.notes.csv', csvheader + "\n" + notes.join("\n"));
 
   // console.log(skippedText)
@@ -995,10 +1146,11 @@ const parseFile = async (filename) => {
 };
 
 (async function () {
-  console.log({ numFiles: allFiles.length });
+  console.log('=================');
+  console.log({ operation: 'Parse PDFs', numFiles: allFiles.length });
   for (var i = 0 ; i < allFiles.length ; i++) {
     const filename = allFiles[i];
-    console.log(filename);
+    // console.log(filename);
     await parseFile(filename);
     // if (i > 2) break;
   }

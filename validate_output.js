@@ -15,6 +15,9 @@ const ignore_branches = [
 
 (async () => {
 
+  console.log('=================');
+  console.log({ operation: 'Validate CSVs', numFiles: allFiles.length });
+
   let routes = {};
   let branches = {};
   let bad = {};
@@ -28,12 +31,13 @@ const ignore_branches = [
     const data = new String(fs.readFileSync(filename));
     let lines = data.split('\n').map(line => line.split(','));
     const header = lines[0];
+    lines = lines.slice(1);
 
     if (lines.length < 10) console.log({ filename, 'lines.length': lines.length });
 
-    console.log(lines.length);
+    console.log({ in: filename.replace(`${outputFolder}/`, ''), lines: lines.length });
 
-    lines = lines.slice(1).filter(line => {
+    lines = lines.filter(line => {
       if (ignore_branches.includes(line[3])) return 0;
       if (line.includes('Tripper')) return 0;
       if (line.includes('Trips')) return 0;
@@ -60,7 +64,7 @@ const ignore_branches = [
     branches = Object.entries(branches).sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
 
     const branches_without_dashes = branches.filter(branch => branch.indexOf('-') !== -1);
-    if (branches_without_dashes.length) console.log({ filename, branches_without_dashes });
+    if (branches_without_dashes.length) console.log({ in: filename, branches_without_dashes });
 
     for (var j = 1 ; j < lines.length ; j++) {
       const line = lines[j];
@@ -132,8 +136,6 @@ const ignore_branches = [
           else bad.avg_spd = (bad.avg_spd || []).concat([{ file, page, route, branch, avg_spd, count: 1 }]);
         }
       });
-
-      // break;
     }
 
     filesProcessed++;
@@ -141,13 +143,12 @@ const ignore_branches = [
 
     // console.log({ header, veh_type, num_veh, interval, run_time, term_time, avg_spd });
   }
-  // console.log(Object.keys(bad))
 
   Object.entries(bad).forEach(([key, values]) => {
     console.log({
       // bad: key,
       // first10: bad[key].slice(0, 10).map(v => v[key]),
-      [key]: bad[key].map(v => `file ${v.file} page ${v.page} - ${v[key]}`),
+      [key]: bad[key] //.map(v => `file ${v.file} page ${v.page} - ${v[key]}`),
       // count: values.length
     });
   });

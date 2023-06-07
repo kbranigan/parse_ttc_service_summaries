@@ -1,11 +1,17 @@
 
 const allFiles = [
-  'service_summary_2008_03_30.pdf',
-  // 'service_summary_2008_06_22.pdf','service_summary_2008_08_31.pdf','service_summary_2008_11_23.pdf',
+  // 'service_summary_2008_03_30.pdf','service_summary_2008_06_22.pdf','service_summary_2008_08_31.pdf','service_summary_2008_11_23.pdf',
   // 'service_summary_2009_01_04.pdf','service_summary_2009_02_15.pdf','service_summary_2009_05_10.pdf','service_summary_2009_06_21-v2.pdf','service_summary_2009_09_06.pdf','service_summary_2009_10_18-rev.pdf','service_summary_2009_11_22.pdf',
   // 'service_summary_2010_01_03.pdf','service_summary_2010_03_28_v2.pdf','service_summary_2010_05_09.pdf','service_summary_2010_06_20.pdf','service_summary_2010_09_05.pdf','service_summary_2010_10_10.pdf','service_summary_2010_11_21.pdf',
   // 'service_summary_2011_01_02.pdf','service_summary_2011_03_27_rev_2.pdf','service_summary_2011_05_08.pdf','service_summary_2011_09_04.pdf','service_summary_2011_10_09.pdf',
-  // 'service_summary_2012_01_08.pdf','service_summary_2012_02_12.pdf','service_summary_2012_03_25.pdf','service_summary_2012_05_06.pdf','service_summary_2012_06_17.pdf','service_summary_2012_07_29.pdf','service_summary_2012_09_02.pdf','service_summary_2012_10_07.pdf','service_summary_2012_11_18.pdf',
+
+  
+  // 'service_summary_2012_01_08.pdf',
+  // 'service_summary_2012_02_12.pdf',
+  // 'service_summary_2012_03_25.pdf',
+  // 'service_summary_2012_05_06.pdf',
+  'service_summary_2012_06_17.pdf',
+  // 'service_summary_2012_07_29.pdf','service_summary_2012_09_02.pdf','service_summary_2012_10_07.pdf','service_summary_2012_11_18.pdf',
   // 'service_summary_2013_03_31.pdf','service_summary_2013_05_12.pdf','service_summary_2013_06_23.pdf','service_summary_2013_09_01.pdf','service_summary_2013_10_13.pdf','service_summary_2013_11_24.pdf',
   // 'service_summary_2014_01_05.pdf','service_summary_2014_03_30.pdf','service_summary_2014_05_11.pdf','service_summary_2014_06_22.pdf','service_summary_2014_07_20.pdf','service_summary_2014_08_31.pdf','service_summary_2014_10_12.pdf','service_summary_2014_11_23.pdf',
   // 'service_summary_2015_01_04.pdf','service_summary_2015_02_15.pdf','service_summary_2015_03_29.pdf','service_summary_2015_05_10.pdf','service_summary_2015_06_21.pdf',
@@ -30,10 +36,11 @@ const allFiles = [
 ];
 
 const yards = {
-  "Arr": "Arror Road", // probably
-  "Arrow": "Arror Road", // service_summary_2012_06_17 page 8
+  "Arr": "Arrow Road", // probably
+  "Arrow": "Arrow Road", // service_summary_2012_06_17 page 8
   "Qswy": "Queensway", // service_summary_2012_06_17 page 8
   "sy": "Queensway", // service_summary_2012_06_17 page 50
+  "s": "Queensway", // service_summary_2012_06_17 page 50, dang it man
   "Hill": "Hillcrest", // probably
   "Arw": "Arrow Road", "Bir": "Birchmount", "DanSub": "Danforth Subway", "Egl": "Eglinton",
   "GrnSub": "Greenwood Subway", "Les": "Leslie", "Mal": "Malvern", "McN": "McNicoll",
@@ -71,10 +78,13 @@ const services = [
   'Monday to Friday',
   'Saturday',
   'Sunday',
+  'Overnight',
   'Overnight - 7 days a week',
   'Overnight - Monday to Friday',
   'Overnight - Saturday',
   'Overnight - Sunday',
+  'Overnight Monday to Friday',
+  'Overnight Saturday and Sunday',
 ];
 
 module.exports = {
