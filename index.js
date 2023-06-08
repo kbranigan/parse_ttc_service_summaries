@@ -129,7 +129,7 @@ const text_to_replace = {
   'D/Wil': '/Wil',
   '302 DANFORTH RD-McCOWAN8\x03': '302 DANFORTH RD-McCOWAN', // service_summary_2008_06_22 page 16 - weird U
   '129 McCOWAN NORTH8': '129 McCOWAN NORTH', // service_summary_2008_06_22 page 36 - weird U
-  "Exhibition (Princes' Gates)": "Exhibition (Princes Gates)",
+  "Exhibition (Princes' Gates)": "Exhibition (Princes Gate)",
   'QUEENSWAY and WILSON DIVISIONS': 'QUEENSWAY AND WILSON DIVISIONS',
   '28 DAVISVILLE M': '28 DAVISVILLE',
   'Monday to F': 'Monday to Friday', // service_summary_2012_05_06.pdf page 11
@@ -188,6 +188,17 @@ const text_to_replace = {
   "29D Wilson Stn-Exhibition (Princes' Gt)": '29D Wilson Stn-Exhibition (Princes Gate)', // service_summary_2010_09_05 page 19
   '29A Tycos Dr - Exhibition (Dufferin Gt)': '29A Tycos Dr-Exhibition (Dufferin Gate)', // service_summary_2010_09_05 page 19
   '29DTo Exhibition (Princes Gate)': '29D To Exhibition (Princes Gate)', // service_summary_2011_09_04 page 19
+  '29D To Exhibition (Princes Gates)': '29D To Exhibition (Princes Gate)',
+  '29D Wilson Stn-Exhibition (Princes Gates)': '29D Wilson Stn-Exhibition (Princes Gate)',
+  '29-Jul 12': '29-Jul-12', // service_summary_2012_07_29 page 7
+  "29D Wilson Stn-Exhibition (Princes' Gate)": "29D Wilson Stn-Exhibition (Princes Gate)", // service_summary_2012_09_02 page 18
+  "29C To Exhibition (Princes' Gate)": '29C To Exhibition (Princes Gate)', // service_summary_2014_06_22 page 19
+  'trippers': 'Tripper',
+  "29H Tycos Dr - Exhibition (Princes' Gate)": '29H Tycos Dr - Exhibition (Princes Gate)', // service_summary_2015_03_29 page 19
+  'CLRVL': 'CLRV', // service_summary_2015_05_10 page 50
+  'Fsc': 'LFsc', // service_summary_2015_05_10 page 50
+  '29G Dufferin Stn - Exhibition (Dufferin Gt)': '29G Dufferin Stn - Exhibition (Dufferin Gate)', // service_summary_2015_06_21 page 26
+  'Birr': 'Bir', // service_summary_2011_06_19 page 36 (not really)
 };
 
 const branch_text_to_always_append = [
@@ -230,50 +241,31 @@ const branch_text_to_always_append = [
 const missing_textItems = {
   'allFiles': {
     'allPages': [
-      { addStr: 'Combined/Average', afterStr: '39E Finch Stn-Neilson Express', index: 1 },
-      { addStr: 'Combined/Average', afterStr: '39E Finch Stn - Neilson Express', index: 1 },
+      { addStr: 'Combined/Average', afterStr: '39E Finch Stn-Neilson Express', },
+      { addStr: 'Combined/Average', afterStr: '39E Finch Stn - Neilson Express', },
       { addStr: 'Combined/Average', afterStr: '38A Scarborough Centre Stn-U of T Scar.' },
       { addStr: 'Combined/Average', afterStr: '38A Scarborough Centre Stn - U of T Scar.' },
       { addStr: 'Combined/Average', afterStr: 'U of T Scarborough' }, // started service_summary_2010_10_10 page ~20
       { addStr: 'Combined/Average', afterStr: 'of T Scarborough' }, // started service_summary_2012_02_12 page ~26
-      { addStr: 'Combined/Average', afterStr: '320A Queens Quay - York Mills Stn', index: 0 }, // started service_summary_2010_11_21, page 4 and also page ~61
-      { addStr: 'Combined/Average', afterStr: '320A Queens Quay - York Mills Stn', index: 1 }, // started service_summary_2010_11_21, page 4 and also page ~61
-      { addStr: 'Combined/Average', afterStr: '320A Queens Quay - York Mills Stn', index: 2 }, // started service_summary_2010_11_21, page 4 and also page ~61
+      { addStr: 'Combined/Average', afterStr: '320A Queens Quay - York Mills Stn' }, // started service_summary_2010_11_21, page 4 and also page ~61
+      // { addStr: 'Combined/Average', afterStr: '320A Queens Quay - York Mills Stn', index: 1 }, // started service_summary_2010_11_21, page 4 and also page ~61
+      // { addStr: 'Combined/Average', afterStr: '320A Queens Quay - York Mills Stn', index: 2 }, // started service_summary_2010_11_21, page 4 and also page ~61
+      { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion' },
+      { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion' },
+      { addStr: 'Combined/Average', afterStr: '503 York - Victoria Park' }, // service_summary_2012_11_18 page 5
+      { addStr: 'Combined/Average', afterStr: '503 York - Kingston Rd. & Queen' }, // service_summary_2013_06_23 page 5
+      { addStr: 'Combined/Average', afterStr: '503 Spadina - Kingston Rd. & Queen' }, // service_summary_2013_06_23 page 5
+      { addStr: 'Combined/Average', afterStr: '95B York Mills Stn - U of T Scarborough' }, // service_summary_2013_09_01 page 58
+      { addStr: '512 Keele - St Clair Stn', afterStr: '512 Keele - St Clair Stn', index: 0 }, // kinda confusing, there's a dangling 'tripper'
+      { addStr: 'Combined/Average', afterStr: '512 Keele - St Clair Stn', offset: { y: 12 }, index: 0 }, // started service_summary_2014_07_20 page 7
+      { addStr: 'Combined/Average', afterStr: '95E York Mills Stn - U of T Scarborough', offset: { y: 12 }, index: 1 }, // started service_summary_2015_06_21 page 75
+      { addStr: 'Combined/Average', afterStr: '95E York Mills Stn - U of T Scarborough', offset: { y: 12 }, index: 2 }, // started service_summary_2015_06_21 page 75
+      { addStr: 'Combined/Average', afterStr: '199C Finch Stn - Morningside Heights', offset: { y: 12 }, }, // started service_summary_2016_03_27 page 25
+      { addStr: 'Combined/Average', afterStr: 'via Kipling and John Garland', index: 4 }, // started service_summary_2016_03_27 page 62
+      { addStr: 'Combined/Average', afterStr: '199C Finch Stn - Morningside Heights Express', }, // started service_summary_2017_01_08 page 56
+      { addStr: 'Combined/Average', afterStr: '503 Spadina - Victoria Park', }, // started service_summary_2017_05_07 page 7
     ],
   },
-  
-  'service_summary_2008_03_30.pdf': {},
-  'service_summary_2008_06_22.pdf': {},
-  'service_summary_2008_08_31.pdf': {},
-  'service_summary_2008_11_23.pdf': { '65': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2009_01_04.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2009_02_15.pdf': { '66': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2009_05_10.pdf': { '63': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 0 }], },
-  'service_summary_2009_06_21-v2.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2009_09_06.pdf': { '61': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 0 }], },
-  'service_summary_2009_10_18-rev.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2009_11_22.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2010_01_03.pdf': { '58': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2010_03_28_v2.pdf': { '58': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2010_05_09.pdf': {},
-  'service_summary_2010_06_20.pdf': { '60': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 2 }], },
-  'service_summary_2010_09_05.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 2 }], },
-  'service_summary_2010_10_10.pdf': { '56': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 2 }], },
-  'service_summary_2010_11_21.pdf': { '58': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 2 }], },
-  'service_summary_2011_01_02.pdf': { '62': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 0 }], },
-  'service_summary_2011_03_27_rev_2.pdf': { '58': [ { addStr: 'Combined/Average', afterStr: '96F To Tandridge and Isling. via Albion', index: 2 }], },
-  'service_summary_2011_05_08.pdf': { '57': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2011_09_04.pdf': { '59': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2011_10_09.pdf': { '59': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 0 }], },
-  'service_summary_2012_01_08.pdf': { '59': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2012_02_12.pdf': { '63': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 0 }], },
-  'service_summary_2012_03_25.pdf': { '56': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 0 }], },
-  'service_summary_2012_05_06.pdf': { '60': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2012_06_17.pdf': { '57': [ { addStr: 'Combined/Average', afterStr: '96C To Thistledown via Albion', index: 2 }], },
-  'service_summary_2012_07_29.pdf': {},
-  'service_summary_2012_09_02.pdf': {},
-  'service_summary_2012_10_07.pdf': {},
-  'service_summary_2012_11_18.pdf': {},
 };
 
 const additional_valid_branches = [
@@ -376,30 +368,66 @@ const ignore_branch_if_last_branch_was = {
   '29 To Exhibition (Dufferin Gate)': [
     '29 Wilson Stn-Exhibition (Dufferin Gate)', 
     '29A Tycos Dr-Exhibition (Dufferin Gate)',
+    '29A Tycos Dr - Exhibition (Dufferin Gate)',
+    '29B Tycos Dr - Exhibition (Dufferin Gate)',
   ],
   '29 To Wilson Stn': [
     '29 Wilson Stn-Queen',
     '29 Wilson Stn-Exhibition (Dufferin Gate)',
     '29D Wilson Stn-Exhibition (Princes Gate)',
-    '29D Wilson Stn-Exhibition (Princes Gates)',
   ],
   '29 To Queen': [
     '29 Wilson Stn-Queen',
     '29A Tycos Dr - Queen',
   ],
-  '29 Exhibition (Dufferin Gate)': [ '29 Wilson Stn-to Exhibition (Dufferin Gate)', ],
-  '29B Ontario Place': [ '29B Wilson Stn-to Ontario Place', ],
-  '29B To Ontario Place': [ '29B Wilson Stn-Ontario Place', ],
+  '29 Exhibition (Dufferin Gate)': [
+    '29 Wilson Stn-to Exhibition (Dufferin Gate)',
+  ],
+  '29A To Wilson Stn': [
+    '29A Wilson Stn-Exhibition (Dufferin Gate)',
+    '29C Wilson Stn-Exhibition (Princes Gate)',
+  ],
+  '29A To Exhibition (Dufferin Gate)': [
+    '29A Wilson Stn-Exhibition (Dufferin Gate)',
+    '29B Tycos Dr - Exhibition (Dufferin Gate)',
+    '29G Dufferin Stn - Exhibition (Dufferin Gate)',
+  ],
   '29A To Tycos': [
     '29A Tycos Dr - Queen',
     '29A Tycos Dr-Exhibition (Dufferin Gate)',
+    '29A Tycos Dr - Exhibition (Dufferin Gate)',
   ],
-  '29D To Exhibition (Princes Gates)': [
-    '29D Wilson Stn-Exhibition (Princes Gates)',
-    '29D Wilson Stn-Exhibition (Princes Gate)',
+  '29B To Tycos': [
+    '29B Tycos Dr - Exhibition (Dufferin Gate)',
+    '29H Tycos Dr - Exhibition (Princes Gate)',
+  ],
+  '29B Ontario Place': [
+    '29B Wilson Stn-to Ontario Place',
+  ],
+  '29B To Ontario Place': [
+    '29B Wilson Stn-Ontario Place',
+  ],
+  '29C To Exhibition (Princes Gate)': [
+    '29C Wilson Stn-Exhibition (Princes Gate)',
+    '29H Tycos Dr - Exhibition (Princes Gate)',
   ],
   '29D To Exhibition (Princes Gate)': [
     '29D Wilson Stn-Exhibition (Princes Gate)',
+    '29D Wilson Stn - Exhibition (Princes Gate)',
+  ],
+  '29G To Dufferin Station': [
+    '29G Dufferin Stn - Exhibition (Dufferin Gate)',
+  ],
+  
+  '36 to Finch Stn': [
+    '36B Finch Stn - Finch West Stn',
+    '36J Finch Stn - Humberwood',
+  ],
+  '36A to Finch West Stn': [
+    '36B Finch Stn - Finch West Stn',
+  ],
+  '36A to Humberwood': [
+    '36J Finch Stn - Humberwood',
   ],
 
   '85 To Sheppard-Yonge Stn': [
@@ -418,7 +446,6 @@ const ignore_branch_if_last_branch_was = {
     '85C Don Mills Stn - Meadowvale',
   ],
   '85A To Don Mills Stn': [
-    // '85 To Sheppard-Yonge Stn',
     '85A Don Mills Stn-Rouge Hill GO Stn',
     '85A Don Mills Stn - Rouge Hill GO Stn',
     "85C Don Mills Stn-Mead'vale",
@@ -441,7 +468,6 @@ const ignore_branch_if_last_branch_was = {
     '85D Don Mills Stn - Rouge Hill GO Stn via Toronto Zoo',
   ],
   '85B To Toronto Zoo': [
-    // '85 To Sheppard-Yonge Stn',
     '85B Sheppard-Yonge Stn - Toronto Zoo',
     '85F Don Mills Stn - Toronto Zoo',
     '85F Don Mills Stn-Toronto Zoo',
@@ -530,7 +556,7 @@ const parseFile = async (filename) => {
 
   for (let pageNum = START_PAGE; pageNum <= numPages; pageNum++) {
     if (done) break;
-    // if (pageNum != 40) continue; // kbfu
+    // if (pageNum != 7) continue; // kbfu
     // if (pageNum > 56) continue;
 
     const page = await doc.getPage(pageNum);
@@ -680,19 +706,21 @@ const parseFile = async (filename) => {
     toAdd.forEach(add => {
       const indices = cellsSortedByLength.map((cell, i) => cell.str === add.afterStr ? i : '').filter(String);
       if (indices.length === 0) return;
-      const anchor = cellsSortedByLength[indices[add.index || 0]];
-      if (anchor === undefined) {
-        console.log({add, anchor, indices});
-      }
-      const newCell = {
+      let anchors = indices.map(i => cellsSortedByLength[i]);
+      if (add.index !== undefined && add.index < anchors.length) anchors = [anchors[add.index]];
+      const newCells = anchors.map(anchor => ({
         ...anchor,
         ...{
-          y: anchor.y + anchor.h,
+          x: anchor.x + (add.offset?.x || 0),
+          y: anchor.y + anchor.h + (add.offset?.y || 1),
           str: add.addStr,
           j: cellsSortedByLength.length,
         }
-      };
-      cellsSortedByLength.push(newCell);
+      })).filter(cell => !cellsSortedByLength.some(t => testCollideX(cell, t) && testCollideY(cell, t)));
+      // if (pageNum == 62) {
+      //   console.log({ add, indices, anchors, newCells });
+      // }
+      cellsSortedByLength.push(...newCells);
     });
 
     cellsSortedByLength.sort((a, b) => b.w === a.w ? a.j - b.j : b.w - a.w);
@@ -801,7 +829,8 @@ const parseFile = async (filename) => {
       // kbfu
       if (1
           // && pageNum == 23
-          && str == '96K Wilson Stn - Tandridge & Islington'
+
+          // && str == 'via Kipling and John Garland'
       //     prevService.str === 'Saturday'
       ) {
       //   // console.log(states);
@@ -1068,6 +1097,7 @@ const parseFile = async (filename) => {
         if (veh_type_column_ids.includes(column)) {
           val = val.replaceAll(' ', '/')
             .split('/').map(c => c.trim()).filter(c => c).sort().join('/');
+          if (val === 'A/Bus/Bus') val = 'ABus/Bus'; // service_summary_2016_03_27 page 22
         }
 
         csvrow.push(val);
