@@ -54,7 +54,11 @@ const ignore_branches = [
 
     for (var j = 1 ; j < lines.length ; j++) {
       const line = lines[j];
-      assert(line.length === 42);
+      if (line.length !== 42) {
+        console.log(`line length is wrong '${line.length}' vs 42`);
+        console.log(line);
+        asdf
+      }
 
       routes[line[2]] = (routes[line[2]] || 0) + 1;
       branches[line[3]] = (branches[line[3]] || 0) + 1;
@@ -93,7 +97,7 @@ const ignore_branches = [
         if (veh_type !== '' && !veh_type.split('/').every(vt => vehicles.includes(vt))) {
           const index = (bad.veh_type || []).findIndex(b => b.veh_type === veh_type);
           if (index !== -1) bad.veh_type[index].count ++;
-          else bad.veh_type = (bad.veh_type || []).concat([{ file, page, route, branch, veh_type, count: 1 }]);
+          else bad.veh_type = (bad.veh_type || []).concat([{ file, page, route, branch, service, veh_type, count: 1 }]);
         }
       });
 

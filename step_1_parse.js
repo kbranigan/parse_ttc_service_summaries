@@ -64,20 +64,10 @@ const text_to_skip = [
   'Mon., Wed., and Thur. afternoon peak period',
   'Tuesday and Friday midday',
   'Tuesday and Friday afternoon peak period',
-  'Temporarily Suspended.',
-  'Temporarily suspended.',
-  'Temporarily Suspended',
-  'Starting December 21, 2008', // service_summary_2008_11_23.pdf
   'U', // i think this is the wheelchair symbol
   'and', // this one is gonna be a problem, with route 11 and 28
   'U and', // and sometimes this service_summary_2011_01_02.pdf
   'Continued',
-  'See also 508 LAKE SHORE',
-  'See 502 DOWNTOWNER',
-  'No service', // 2008_03_30
-  'November 23 to December 20, 2008 only',
-  'For bus service on Roncesvalles',
-  'see 501 QUEEN',
   'd', // donno, seems not visible
   'F id', // donno, seems not visible
   'M', // donno, seems not visible
@@ -102,15 +92,38 @@ const text_to_skip = [
   'd Y', // service_summary_2012_11_18 page 58 '98A Sheppard-Yonge Stn - Peckham'
   'moot', // service_summary_2021_11_21 page 19
   'SUBWAY SERVICES', // service_summary_2015_09_06 page 3
+  'ay morning peak period', // service_summary_2018_10_07 page 15
+  'then', // service_summary_2008_11_23 page 59 'then'
+  't i', // service_summary_2011_09_04 page 40 'Alternates trips with 329 DUFFERIN'
+];
+
+const text_is_a_note = [
+  'see 501 QUEEN',
+  'Starting December 21, 2008', // service_summary_2008_11_23.pdf
+  'Temporarily Suspended.',
+  'Temporarily suspended.',
+  'Temporarily Suspended',
+  'See also 508 LAKE SHORE',
+  'See 502 DOWNTOWNER',
+  'No service', // 2008_03_30
+  'November 23 to December 20, 2008 only',
+  'For bus service on Roncesvalles',
   'For service on Kingston Road:', // service_summary_2015_10_11 page 15
   '97B operates via Yonge, Wellington, Bay, Queens', // service_summary_2017_01_08 page 41
   '97B operates via Yonge, Queens Quay, Bay,', // service_summary_2017_01_08 page 41
   'Northbound 102B buses operate as', // service_summary_2017_01_08 page 42
   'Southbound 102B buses operate as', // service_summary_2017_01_08 page 42
   '97B operates via Yonge, Queens Quay, Bay, Front', // service_summary_2017_07_30 page 42
-  'ay morning peak period', // service_summary_2018_10_07 page 15
-  'then', // service_summary_2008_11_23 page 59 'then'
-  't i', // service_summary_2011_09_04 page 40 'Alternates trips with 329 DUFFERIN'
+  'AFTER', // service_summary_2017_06_18 page 49
+  'BEFORE', // service_summary_2019_01_06 page 46
+  'Until 11:00 a.m.', // service_summary_2019_01_06 page 32
+  'After 11:00 a.m.', // service_summary_2019_01_06 page 32
+  'Until 9:00 p.m.', // service_summary_2019_06_23 page 5
+  'After 10:00 a.m.', // service_summary_2019_06_23 page 17
+  'After 9:00 p.m.', // service_summary_2019_08_04 page 5
+  'After 7:00 a.m.', // service_summary_2020_02_16 page 47
+  'Until 6:00 p.m.', // service_summary_2021_10_10 page 7
+  'See also 508 LAKE SHORE', // service_summary_2008_03_30 page 6
 ];
 
 const text_to_replace = {
@@ -130,6 +143,8 @@ const text_to_replace = {
   '302 DANFORTH RD-McCOWAN8\x03': '302 DANFORTH RD-McCOWAN', // service_summary_2008_06_22 page 16 - weird U
   '129 McCOWAN NORTH8': '129 McCOWAN NORTH', // service_summary_2008_06_22 page 36 - weird U
   "Exhibition (Princes' Gates)": "Exhibition (Princes Gate)",
+  "29B To Exhibition (Princes' Gate)": '29B To Exhibition (Princes Gate)', // service_summary_2022_09_04 page 15
+  "29B Wilson Stn-Exhibition (Princes' Gate)": '29B Wilson Stn-Exhibition (Princes Gate)', // service_summary_2022_09_04 page 15
   'QUEENSWAY and WILSON DIVISIONS': 'QUEENSWAY AND WILSON DIVISIONS',
   '28 DAVISVILLE M': '28 DAVISVILLE',
   'Monday to F': 'Monday to Friday', // service_summary_2012_05_06.pdf page 11
@@ -194,11 +209,68 @@ const text_to_replace = {
   "29D Wilson Stn-Exhibition (Princes' Gate)": "29D Wilson Stn-Exhibition (Princes Gate)", // service_summary_2012_09_02 page 18
   "29C To Exhibition (Princes' Gate)": '29C To Exhibition (Princes Gate)', // service_summary_2014_06_22 page 19
   'trippers': 'Tripper',
+  'Trippers': 'Tripper',
   "29H Tycos Dr - Exhibition (Princes' Gate)": '29H Tycos Dr - Exhibition (Princes Gate)', // service_summary_2015_03_29 page 19
   'CLRVL': 'CLRV', // service_summary_2015_05_10 page 50
   'Fsc': 'LFsc', // service_summary_2015_05_10 page 50
   '29G Dufferin Stn - Exhibition (Dufferin Gt)': '29G Dufferin Stn - Exhibition (Dufferin Gate)', // service_summary_2015_06_21 page 26
   'Birr': 'Bir', // service_summary_2011_06_19 page 36 (not really)
+  "121A Princes' Gate - Distillery": '121A Princes Gate - Distillery', // service_summary_2018_02_18 page 50
+  "29C Wilson Stn-Exhibition (Prince' Gate)": '29C Wilson Stn-Exhibition (Prince Gate)', // service_summary_2018_10_07 page 16
+  "121C Princes' Gate - Cherry Beach": '121C Princes Gate - Cherry Beach', // service_summary_2018_05_13 page 47
+  '952 Lawrence Station to Terminal 3': '952 Lawrence Station - Terminal 3', // service_summary_2018_10_07 page 57
+  '954 Lawrence East RT Station to Starspray': '954 Lawrence East RT Station - Starspray', // service_summary_2018_10_07 page 57
+  '989 Keele Station to Steeles': '989 Keele Station - Steeles', // service_summary_2018_10_07 page 58
+  '4\\': '4', // service_summary_2020_06_21 page 50
+  '107C S W Stn - Steeles via Keele & Supertest': '107C Sheppard West Stn - Steeles via Keele & Supertest', // service_summary_2021_09_05 page 41
+  '107D S W Stn - Steeles via Alness & Supertest': '107D Sheppard West Stn - Steeles via Alness & Supertest', // service_summary_2021_09_05 page 41
+  '###': '####', // service_summary_2021_11_21 page 19
+  '#####': '####', // service_summary_2022_02_13 page 19
+  "501 Sunnyside-Neville Park via McCaul, Dundas, and Bvw": '501 Sunnyside-Neville Park via McCaul Dundas and Broadview', // service_summary_2023_05_07 page 6
+
+  // below is from aggregate step
+  '1 YONGE-UNIVERSITY SUBWAY': '1 YONGE-UNIVERSITY-SPADINA',
+  '1 YONGE-UNIVERSITY': '1 YONGE-UNIVERSITY-SPADINA',
+  '2 BLOOR-DANFORTH SUBWAY': '2 BLOOR-DANFORTH',
+  '3 SCARBOROUGH': '3 SCARBOROUGH RT',
+  '4 SHEPPARD SUBWAY': '4 SHEPPARD',
+  '10 VAN HORNE U': '10 VAN HORNE',
+  '28 DAVISVILLE U': '28 DAVISVILLE',
+  '61 AVENUE RD NORTH8': '61 AVENUE RD NORTH',
+  '101 PARC DOWNSVIEW PARK': '101 DOWNSVIEW PARK',
+  '107 KEELE NORTH M N': '107 KEELE NORTH',
+  '128 Stanley Greene': '128 STANLEY GREENE',
+  '139 FINCH - DON MILLS': '139 FINCH-DON MILLS',
+  "175 BLUFFER'S PARK": '175 BLUFFERS PARK',
+  '224 VICTORIA PARK NORTH8': '224 VICTORIA PARK NORTH',
+  '353 STEELES': '353 STEELES EAST',
+  '402 PARKDALE COMMUNITYBUS': '402 PARKDALE',
+  '750 STANDBY BUSES': '750 STANDBY BUSES - DOWNTOWN GAP BUSES',
+  '777 SERVICE RELIEF BUSES': '777 SERVICE RELIEF BUSES - QUEENSWAY/WILSON DIVISION',
+  '777 SERVICE RELIEF BUSES - QUEENSWAY AND WILSON DIVISIONS': '777 SERVICE RELIEF BUSES - QUEENSWAY/WILSON DIVISION',
+  '902 Markham Road Express': '902 MARKHAM ROAD EXPRESS',
+  '902 MARKHAM RD EXPRESS': '902 MARKHAM ROAD EXPRESS',
+  '905 Eglinton East Express': '905 EGLINTON EAST EXPRESS',
+  '913 Progress Express': '913 PROGRESS EXPRESS',
+  '924 Victoria Park Express': '924 VICTORIA PARK EXPRESS',
+  '925 Don Mills Express': '925 DON MILLS EXPRESS',
+  '927 Highway 27 Express': '927 HIGHWAY 27 EXPRESS',
+  '929 Dufferin Express': '929 DUFFERIN EXPRESS',
+  '935 Jane Express': '935 JANE EXPRESS',
+  '937 Islington Express': '937 ISLINGTON EXPRESS',
+  '938 Highland Creek EXPRESS': '938 HIGHLAND CREEK EXPRESS',
+  '939 Finch Express': '939 FINCH EXPRESS',
+  '952 Lawrence West Express': '952 LAWRENCE WEST EXPRESS',
+  '954 Lawrence East Express': '954 LAWRENCE EAST EXPRESS',
+  '960 Steeles West Express': '960 STEELES WEST EXPRESS',
+  '984 Sheppard West Express': '984 SHEPPARD WEST EXPRESS',
+  '985 Sheppard East Express': '985 SHEPPARD EAST EXPRESS',
+  '989 Weston Road Express': '989 WESTON ROAD EXPRESS',
+  '989 WESTON EXPRESS': '989 WESTON ROAD EXPRESS',
+
+  // branches
+  '7-Bathurst Stn to Steeles': '7 Bathurst Stn-Steeles',
+  '8Broadview Stn-Coxwell': '8 Broadview Stn-Coxwell',
 };
 
 const branch_text_to_always_append = [
@@ -264,6 +336,284 @@ const missing_textItems = {
       { addStr: 'Combined/Average', afterStr: 'via Kipling and John Garland', index: 4 }, // started service_summary_2016_03_27 page 62
       { addStr: 'Combined/Average', afterStr: '199C Finch Stn - Morningside Heights Express', }, // started service_summary_2017_01_08 page 56
       { addStr: 'Combined/Average', afterStr: '503 Spadina - Victoria Park', }, // started service_summary_2017_05_07 page 7
+      { addStr: 'Combined/Average', afterStr: '939C Finch Stn - Morningside Heights Express', }, // service_summary_2018_10_07 page 57
+      { addStr: 'Combined/Average', afterStr: '939B Finch West Stn -', offset: { y: 12 }, index: 1 }, // service_summary_2018_10_07 page 57
+      { addStr: 'Combined/Average', afterStr: '939B Finch West Stn -', offset: { y: 12 }, index: 2 }, // service_summary_2018_10_07 page 57
+      { addStr: 'Combined/Average', afterStr: 'SB via Birchmount', index: 0 }, // service_summary_2020_01_05 page 29
+      { addStr: 'Combined/Average', afterStr: 'SB via Birchmount', index: 1 }, // service_summary_2020_01_05 page 29
+      { addStr: 'Combined/Average', afterStr: 'SB via Birchmount', index: 2 }, // service_summary_2020_01_05 page 29
+    ],
+  },
+  'service_summary_2012_09_02.pdf': { '6': [ { addStr: 'trips', afterStr: 'trips', index: 1, onCollision: 'error' } ], },
+
+  'service_summary_2018_02_18.pdf': { '50': [ { addStr: 'Bus', afterStr: '121A Princes Gate - Distillery', offset: { x: 600, y: -6, w:9 }, index: 0, onCollision: 'delete' }]},
+  'service_summary_2018_04_01.pdf': { '47': [ { addStr: 'Bus', afterStr: '121A Princes Gate - Distillery', offset: { x: 600, y: -6, w:9 }, index: 0, onCollision: 'delete' }]},
+  'service_summary_2018_05_13.pdf': { '47': [ { addStr: 'Bus', afterStr: '121C Princes Gate - Cherry Beach', offset: { x: 600, y: -6, w:9 }, index: 0, onCollision: 'delete' }]},
+  'service_summary_2018_06_24.pdf': {
+    '22': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 465, y: -6, w:9 }, index: 0, onCollision: 'delete' }],
+    '49': [ { addStr: 'Bus', afterStr: '121D Ontario Place - Cherry Beach', offset: { x: 600, y: -6, w:9 }, index: 0, onCollision: 'delete' }],
+  },
+  'service_summary_2018_10_07.pdf': { '21': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 894, y: -6, w:20 }, index: 0, onCollision: 'delete' }]},
+
+  'service_summary_2019_01_06.pdf': {
+    '9': [
+      { addStr: 'Combined/Average', afterStr: '511C Bathurst Stn -Wellington & Bathurst' },
+    ],
+    '21': [
+      { addStr: 'Bus', afterStr: '0', offset:{ x: -6}, onCollision: 'delete', index: 0 },
+    ],
+    '56': [
+      { addStr: 'Combined/Average', afterStr: 'via Royalcrest Express', },
+      { addStr: 'Combined/Average', afterStr: '925 Pape Stn - Steeles Express', offset: { y: 38 }, index: 1 },
+      { addStr: '925 Pape Stn - Steeles Express', afterStr: '925 Pape Stn - Steeles Express', offset: { y: 24 }, index: 1 },
+      { addStr: '925 Pape Stn - Steeles Express', afterStr: '925 Pape Stn - Steeles Express', index: 1 },
+    ],
+    '57': [
+      { addStr: 'Combined/Average', afterStr: 'Scarborough Centre Stn Express', index: 2 },
+      { addStr: 'Combined/Average', afterStr: 'Scarborough Centre Stn Express', index: 1 },
+    ],
+  },
+  'service_summary_2019_02_17.pdf': {
+    '21': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 976, y: -6, w:9 }, index: 0, onCollision: 'delete' }],
+    '56': [
+      { addStr: 'Combined/Average', afterStr: '925 Pape Stn - Steeles Express', offset: { y: 38 }, index: 1 },
+      { addStr: '925 Pape Stn - Steeles Express', afterStr: '925 Pape Stn - Steeles Express', offset: { y: 24 }, index: 1 },
+      { addStr: '925 Pape Stn - Steeles Express', afterStr: '925 Pape Stn - Steeles Express', index: 1 },
+    ],
+  },
+  'service_summary_2019_03_31.pdf': { '21': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 976, y: -6, w:9 }, index: 0, onCollision: 'delete' }], },
+  'service_summary_2019_05_12.pdf': { '21': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 475, y: -1, w:9 }, index: 0, onCollision: 'delete' }], },
+  'service_summary_2019_06_23.pdf': {
+    '20': [ { addStr: 'Combined/Average', afterStr: 'Rouge Hill GO Stn' }],
+    '21': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 475, y: -1, w:9 }, index: 0, onCollision: 'delete' }],
+  },
+
+  'service_summary_2019_08_04.pdf': {
+    '20': [ { addStr: 'Combined/Average', afterStr: 'Rouge Hill GO Stn' }],
+    '21': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 975, y: -1, w:9 }, index: 0, onCollision: 'delete' }],
+  },
+  'service_summary_2019_09_01.pdf': { '21': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 475, y: -1, w:9 }, index: 0, onCollision: 'delete' }], },
+  'service_summary_2019_10_13.pdf': { '21': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 976, y: -1, w:9 }, index: 0, onCollision: 'delete' }], },
+  'service_summary_2019_11_24.pdf': {
+    '21': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 475, y: -1, w:9 }, index: 0, onCollision: 'delete' }],
+    '46': [ { addStr: 'Combined/Average', afterStr: '121S Union Stn - Distillery' }],
+  },
+
+  'service_summary_2020_01_05.pdf': { '21': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 475, y: -1, w:9 }, index: 0, onCollision: 'delete' }], },
+  'service_summary_2020_02_16.pdf': {
+    '22': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 485, y: -6, w:9 }, index: 0, onCollision: 'delete' }],
+  },
+  'service_summary_2020_03_29.pdf': {
+    '22': [ { addStr: 'Bus', afterStr: '42A Finch Stn - Middlefield/Dynamic', offset: { x: 485, y: -6, w:9 }, index: 0, onCollision: 'delete' }],
+  },
+  'service_summary_2020_06_21.pdf': { '15': [ { addStr: 'Combined/Average', afterStr: '23 Main Street Stn - St Clair' } ], },
+  'service_summary_2020_10_11.pdf': { '15': [ { addStr: 'Combined/Average', afterStr: '23 Main Street Stn - St Clair' } ], },
+  'service_summary_2020_11_22.pdf': { '15': [ { addStr: 'Combined/Average', afterStr: '23 Main Street Stn - St Clair' } ], },
+
+  'service_summary_2021_01_03.pdf': {
+    '8': [
+      { addStr: 'Combined/Average', afterStr: '504B Dufferin Gate - Broadview Stn', index: 1 },
+      { addStr: 'Combined/Average', afterStr: '504B Dufferin Gate - Broadview Stn', index: 2 },
+    ],
+  },
+  'service_summary_2021_02_14.pdf': {
+    '8': [
+      { addStr: 'Combined/Average', afterStr: '504B Dufferin Gate - Broadview Stn', index: 1 },
+      { addStr: 'Combined/Average', afterStr: '504B Dufferin Gate - Broadview Stn', index: 2 },
+    ],
+  },
+  'service_summary_2021_03_28.pdf': {
+    '8': [
+      { addStr: 'Combined/Average', afterStr: '504B Dufferin Gate - Broadview Stn', index: 1 },
+      { addStr: 'Combined/Average', afterStr: '504B Dufferin Gate - Broadview Stn', index: 2 },
+    ],
+  },
+  'service_summary_2021_05_09.pdf': {
+    '40': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 0, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+    ],
+  },
+  'service_summary_2021_06_20.pdf': {
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 0, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+    ],
+  },
+  'service_summary_2021_08_01.pdf': {
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 0, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+    ],
+  },
+  'service_summary_2021_09_05.pdf': {
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn - Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2021_10_10.pdf': {
+    '43': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn - Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2021_11_21.pdf': {
+    '43': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn - Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2022_01_02.pdf': {
+    '44': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn - Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2022_02_13.pdf': {
+    '42': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn - Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2022_03_27.pdf': {
+    '42': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn - Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2022_05_08.pdf': {
+    '26': [
+      { addStr: 'Combined/Average', afterStr: 'via Pioneer Village Stn', index: 3, onCollision: 'error' },
+    ],
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: 'via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2022_06_19.pdf': {
+    '26': [
+      { addStr: 'Combined/Average', afterStr: 'via Pioneer Village Stn', index: 3, onCollision: 'error' },
+    ],
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn - Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: 'via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2022_07_31.pdf': {
+    '24': [
+      { addStr: 'Combined/Average', afterStr: '60B Finch Stn-Martin Grove via Pioneer Village Stn', index: 2, onCollision: 'error' },
+    ],
+    '27': [
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 0, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 2, onCollision: 'error' },
+    ],
+    '39': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn-Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2022_09_04.pdf': {
+    '26': [
+      { addStr: 'Combined/Average', afterStr: '60B Finch Stn-Martin Grove via Pioneer Village Stn', index: 2, onCollision: 'error' },
+    ],
+    '29': [
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 0, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 2, onCollision: 'error' },
+    ],
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn-Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2022_11_20.pdf': {
+    '26': [
+      { addStr: 'Combined/Average', afterStr: '60B Finch Stn-Martin Grove via Pioneer Village Stn', index: 2, onCollision: 'error' },
+    ],
+    '29': [
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 0, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 2, onCollision: 'error' },
+    ],
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn-Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2023_01_08.pdf': {
+    '26': [
+      { addStr: 'Combined/Average', afterStr: '60B Finch Stn-Martin Grove via Pioneer Village Stn', index: 2, onCollision: 'error' },
+    ],
+    '29': [
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 0, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 2, onCollision: 'error' },
+    ],
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn-Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2023_02_12.pdf': {
+    '26': [
+      { addStr: 'Combined/Average', afterStr: '60B Finch Stn-Martin Grove via Pioneer Village Stn', index: 2, onCollision: 'error' },
+    ],
+    '29': [
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 0, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 2, onCollision: 'error' },
+    ],
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn-Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2023_03_26.pdf': {
+    '26': [
+      { addStr: 'Combined/Average', afterStr: '60B Finch Stn-Martin Grove via Pioneer Village Stn', index: 2, onCollision: 'error' },
+    ],
+    '29': [
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 0, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 2, onCollision: 'error' },
+    ],
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn-Steeles via Alness & Supertest', onCollision: 'error' },
+    ],
+  },
+  'service_summary_2023_05_07.pdf': {
+    '26': [
+      { addStr: 'Combined/Average', afterStr: '60B Finch Stn-Martin Grove via Pioneer Village Stn', index: 2, onCollision: 'error' },
+    ],
+    '29': [
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 0, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '69B Warden Stn-Kingston Rd SB via Birchmount', index: 2, onCollision: 'error' },
+    ],
+    '41': [
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 1, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107B Sheppard West Stn-Steeles via Alness', index: 2, onCollision: 'error' },
+      { addStr: 'Combined/Average', afterStr: '107D Sheppard West Stn-Steeles via Alness & Supertest', onCollision: 'error' },
     ],
   },
 };
@@ -354,6 +704,7 @@ const create_service_if_not_exists = {
   '506B Parliament - Main Street Stn': '506 CARLTON', // service_summary_2021_03_28 page 9
   '134D Scarborough Centre Stn-Finch via Centennial College': 'Sunday', // service_summary_2022_11_20 page 48
   '141 King & Spadina-Lawrence': 'Monday to Friday', // service_summary_2023_03_26 page 49
+  '506B Parliament - Main Street Stn': 'Sunday', // service_summary_2021_03_28 page 9 - this could be an issue maybe going forward
 };
 
 const create_blank_states_if_blank = [
@@ -386,6 +737,7 @@ const ignore_branch_if_last_branch_was = {
   '29A To Wilson Stn': [
     '29A Wilson Stn-Exhibition (Dufferin Gate)',
     '29C Wilson Stn-Exhibition (Princes Gate)',
+    '29C Wilson Stn-Exhibition (Prince Gate)',
   ],
   '29A To Exhibition (Dufferin Gate)': [
     '29A Wilson Stn-Exhibition (Dufferin Gate)',
@@ -397,9 +749,20 @@ const ignore_branch_if_last_branch_was = {
     '29A Tycos Dr-Exhibition (Dufferin Gate)',
     '29A Tycos Dr - Exhibition (Dufferin Gate)',
   ],
+  '29B To Exhibition (Dufferin Gate)': [
+    '29A Wilson Stn-Exhibition (Dufferin Gate)',
+    '29B Tycos Dr - Exhibition (Dufferin Gate)',
+  ],
+  '29B To Exhibition (Princes Gate)': [
+    '29B Wilson Stn-Exhibition (Princes Gate)',
+  ],
   '29B To Tycos': [
     '29B Tycos Dr - Exhibition (Dufferin Gate)',
     '29H Tycos Dr - Exhibition (Princes Gate)',
+  ],
+  '29B To Liberty Village': [
+    '29B Wilson Stn-Liberty Village',
+    '29B Wilson Stn - Liberty Village',
   ],
   '29B Ontario Place': [
     '29B Wilson Stn-to Ontario Place',
@@ -408,7 +771,9 @@ const ignore_branch_if_last_branch_was = {
     '29B Wilson Stn-Ontario Place',
   ],
   '29C To Exhibition (Princes Gate)': [
+    '29C Wilson Stn-Exhibition (Dufferin Gate)',
     '29C Wilson Stn-Exhibition (Princes Gate)',
+    '29C Wilson Stn-Exhibition (Prince Gate)',
     '29H Tycos Dr - Exhibition (Princes Gate)',
   ],
   '29D To Exhibition (Princes Gate)': [
@@ -420,7 +785,9 @@ const ignore_branch_if_last_branch_was = {
   ],
   
   '36 to Finch Stn': [
+    '36A Finch Stn-Finch West Stn',
     '36B Finch Stn - Finch West Stn',
+    '36J Finch Stn-Humberwood',
     '36J Finch Stn - Humberwood',
   ],
   '36A to Finch West Stn': [
@@ -429,14 +796,21 @@ const ignore_branch_if_last_branch_was = {
   '36A to Humberwood': [
     '36J Finch Stn - Humberwood',
   ],
+  '36B to Humberwood': [
+    '36J Finch Stn-Humberwood',
+  ],
 
   '85 To Sheppard-Yonge Stn': [
     "85 Sheppard-Yonge Station - Meadowvale",
     '85 Sheppard-Yonge Stn - Meadowvale',
     '85B Sheppard-Yonge Stn-Trnto Zoo',
+    '85B Sheppard-Yonge Stn-Toronto Zoo',
     '85B Sheppard-Yonge Stn - Toronto Zoo',
+    '85C Don Mills Stn-Meadowvale',
     '85G Shep-Yonge Stn - Rouge Hill GO Stn',
+    '85G Sheppard-Yonge Stn - Rouge Hill GO Stn',
     '85J Shep-Yonge Stn-Don Mills Stn',
+    '85J Sheppard-Yonge Stn-Don Mills Stn',
     '85J Sheppard-Yonge Stn - Don Mills Stn',
   ],
   '85 To Meadowvale': [
@@ -462,6 +836,7 @@ const ignore_branch_if_last_branch_was = {
     '85G Shep-Yonge Stn - Rouge Hill GO Stn',
   ],
   '85A To Don Mills Stn via Toronto Zoo': [
+    '85D Don Mills Stn-Rouge Hill GO Stn via Toronto Zoo',
     '85D Don Mills Stn - Rouge Hill GO Stn via Toronto Zoo',
   ],
   '85A To Rouge Hill GO Stn via Toronto Zoo': [
@@ -553,11 +928,11 @@ const parseFile = async (filename) => {
   const numPages = doc.numPages;
   console.log({ in: filename, pages: numPages });
   let done = false;
+  let processedPages = 0;
 
   for (let pageNum = START_PAGE; pageNum <= numPages; pageNum++) {
     if (done) break;
-    // if (pageNum != 7) continue; // kbfu
-    // if (pageNum > 56) continue;
+    // if (pageNum != 50) { if (pageNum === START_PAGE) console.log(`\n################################\n PROCESSING ONLY A SINGLE PAGE! \n################################`); continue; } // kbfu
 
     const page = await doc.getPage(pageNum);
     const viewport = page.getViewport({ scale: 1.0 });
@@ -704,22 +1079,42 @@ const parseFile = async (filename) => {
     ];
 
     toAdd.forEach(add => {
-      const indices = cellsSortedByLength.map((cell, i) => cell.str === add.afterStr ? i : '').filter(String);
-      if (indices.length === 0) return;
-      let anchors = indices.map(i => cellsSortedByLength[i]);
+      let anchorsIndices = cellsSortedByLength.map((cell, i) => cell.str === add.afterStr ? i : '').filter(String);
+      if (anchorsIndices.length === 0) return;
+      let anchors = anchorsIndices.map(i => cellsSortedByLength[i]);
       if (add.index !== undefined && add.index < anchors.length) anchors = [anchors[add.index]];
+      if (add.index !== undefined && add.index < anchorsIndices.length) anchorsIndices = [anchorsIndices[add.index]];
       const newCells = anchors.map(anchor => ({
         ...anchor,
         ...{
           x: anchor.x + (add.offset?.x || 0),
-          y: anchor.y + anchor.h + (add.offset?.y || 1),
+          y: anchor.y + (add.onCollision === 'delete' ? 0 : anchor.h) + (add.offset?.y || 1),
+          w: add.offset?.w || anchor.w,
+          h: add.offset?.h || anchor.h,
           str: add.addStr,
           j: cellsSortedByLength.length,
         }
-      })).filter(cell => !cellsSortedByLength.some(t => testCollideX(cell, t) && testCollideY(cell, t)));
-      // if (pageNum == 62) {
-      //   console.log({ add, indices, anchors, newCells });
-      // }
+      }));
+
+      const collisions = newCells.map(cell => cellsSortedByLength.map((t, i) => testCollideX(cell, t) && testCollideY(cell, t) ? i : '').filter(String));
+
+      if (add.onCollision === 'delete') {
+        // console.log(collisions)
+        console.log(`deleting: [${collisions.map(coll => coll.map(i => `'${cellsSortedByLength[i].str}'`)).join(', ')}]`)
+        collisions.forEach(coll => coll.sort((a, b) => b - a).forEach(i => { cellsSortedByLength.splice(i, 1); }));
+      } else if (add.onCollision === 'nothing') {
+        // don't add
+        return;
+      } else if (add.onCollision === 'error' && collisions[0].length > 0) {
+        console.log(cellsSortedByLength.length);
+        console.log({ add, anchorsIndices, anchors, newCells, collisionsI: collisions, collisions: collisions.map(c => c.map(d => JSON.stringify(cellsSortedByLength[d]))) });
+        console.log(cellsSortedByLength.length);
+        asdf
+      }
+
+      console.log(`inserting '${add.addStr}' anchored to ${add.afterStr}`)
+      // default ignore collision, add
+      // console.log(cellsSortedByLength.length);
       cellsSortedByLength.push(...newCells);
     });
 
@@ -830,7 +1225,13 @@ const parseFile = async (filename) => {
       if (1
           // && pageNum == 23
 
-          // && str == 'via Kipling and John Garland'
+          // && (
+          //   str == '501 Sunnyside-Neville Park via McCaul Dundas and Broadview'
+          //   || str == '501 Sunnyside-Neville Park via McCaul'
+          //   || str == ' Dundas'
+          //   || str == ' and Bvw'
+          //   || str.slice(0, 13) == '501 Sunnyside'
+          // )
       //     prevService.str === 'Saturday'
       ) {
       //   // console.log(states);
@@ -843,6 +1244,7 @@ const parseFile = async (filename) => {
       //   // asdf
       // }
 
+      if (text_is_a_note.includes(str)) continue;
 
       if (y > primaryCorner.y) { // not part of the header at all
         if (x < secondaryCorner.x - 40) { // first column, routes / services / branches
@@ -862,15 +1264,15 @@ const parseFile = async (filename) => {
             states.service.push({ y, h, str: str.replace(',', '') });
             if (debug) console.log(`new service ${str}`);
           } else if (prevRoute && parseInt(str) && parseInt(str) === parseInt(prevRoute.str)) { // if line "parseInt" matches route "parseInt" then it's a branch
-            states.branch.push({ y, h, str });
+            states.branch.push({ y, h, str: str.replaceAll(' - ', '-').replaceAll(' -', '-').replaceAll('- ', '-') });
           } else if (str.slice(0, 8) === 'Standby ' || str.slice(0, 15) === 'Service relief ') {
-            states.branch.push({ y, h, str });
+            states.branch.push({ y, h, str: str.replaceAll(' - ', '-').replaceAll(' -', '-').replaceAll('- ', '-') });
           } else if (additional_valid_branches.includes(str)) {
-            states.branch.push({ y, h, str });
+            states.branch.push({ y, h, str: str.replaceAll(' - ', '-').replaceAll(' -', '-').replaceAll('- ', '-') });
           } else if (prevRoute && parseInt(str) && parseInt(str) != undefined && parseInt(prevRoute.str) != undefined) { // if line "parseInt" doesn't matches but it's still a number at least
             if ((conjoined_routes_for_some_reason[`${parseInt(str)}`] || []).includes(parseInt(prevRoute.str))) {
               // console.log({ msg: `branch is weird, route: ${prevRoute.str}`, pageNum, x, y, str }); // this should never console.log anything
-              states.branch.push({ y, h, str });
+              states.branch.push({ y, h, str: str.replaceAll(' - ', '-').replaceAll(' -', '-').replaceAll('- ', '-') });
               if (str.search(',') !== -1) console.log(`new branch "${str}" has a comma`);
               if (debug) console.log(`new branch ${str}`);
             } else {
@@ -880,21 +1282,25 @@ const parseFile = async (filename) => {
             }
           } else if (prevBranch && branch_text_to_always_append.includes(str)) {
             prevBranch.str += ` ${str}`;
+            prevBranch.str = prevBranch.str.replaceAll(' - ', '-').replaceAll(' -', '-').replaceAll('- ', '-');
             prevBranch.h = y + h - prevBranch.y;
             if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
             if (debug) console.log(`append branch ${str}`);
           } else if (prevBranch && (prevBranch.str.slice(-1) === '-' || prevBranch.str.slice(-1) === '-')) {
             prevBranch.str += str;
+            prevBranch.str = prevBranch.str.replaceAll(' - ', '-').replaceAll(' -', '-').replaceAll('- ', '-');
             prevBranch.h = y + h - prevBranch.y;
             if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
             if (debug) console.log(`append branch ${str}`);
           } else if (prevBranch && prevBranch.str.slice(-4) === ' and') { // if prev end in "-" then simply append to that
             prevBranch.str += ` ${str}`;
+            prevBranch.str = prevBranch.str.replaceAll(' - ', '-').replaceAll(' -', '-').replaceAll('- ', '-');
             prevBranch.h = y + h - prevBranch.y;
             if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
             if (debug) console.log(`append branch ${str}`);
           } else if (prevBranch && prevBranch.str.slice(-4) === ' via') { // if prev end in "-" then simply append to that
             prevBranch.str += ` ${str}`;
+            prevBranch.str = prevBranch.str.replaceAll(' - ', '-').replaceAll(' -', '-').replaceAll('- ', '-');
             prevBranch.h = y + h - prevBranch.y;
             if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
             if (debug) console.log(`append branch ${str}`);
@@ -909,6 +1315,7 @@ const parseFile = async (filename) => {
               asdf
             }
             prevBranch.str += ` ${str.trim()}`;
+            prevBranch.str = prevBranch.str.replaceAll(' - ', '-').replaceAll(' -', '-').replaceAll('- ', '-');
             prevBranch.h = y + h - prevBranch.y;
             if (str.search(',') !== -1) console.log(`append branch "${str}" has a comma`);
             if (debug) console.log(`append branch ${str}`);
@@ -1004,6 +1411,8 @@ const parseFile = async (filename) => {
     for (var j = 0 ; j < data_cells.length ; j++) {
       const cell = data_cells[j];
       data_cells[j].columns = columns.filter(column => testCollideX(cell, column)).map(column => column.id);
+
+      if (text_is_a_note.includes(cell.str)) continue;
 
       if (data_cells[j].columns.length === 1) {
         data_cells[j].states = states_at(cell);
@@ -1146,6 +1555,7 @@ const parseFile = async (filename) => {
     skippedText = new Array(...new Set(skippedText), ...temp).sort();
     //   // console.log({ pageNum, skipped: data_cells.filter(cell => !cell.printed).slice(0, 40).map(c => c.str) })
     // }
+    processedPages++;
 
     page.cleanup();
   }
@@ -1159,7 +1569,7 @@ const parseFile = async (filename) => {
   const outputFile = `output/${filename}.csv`;
   const outputNoteFile = `output/${filename}.notes.csv`;
 
-  console.log({ out: `${filename}.csv`, lines: csvrows.length });
+  console.log({ out: `${filename}.csv`, lines: csvrows.length, processedPages });
 
   if (notes.length > 0) {
     let notesheader = Object.keys(notes[0]);
