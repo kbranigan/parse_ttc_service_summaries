@@ -6,8 +6,6 @@ const allFiles = [
   'service_summary_2010_01_03.pdf','service_summary_2010_03_28_v2.pdf','service_summary_2010_05_09.pdf','service_summary_2010_06_20.pdf','service_summary_2010_09_05.pdf','service_summary_2010_10_10.pdf','service_summary_2010_11_21.pdf',
   'service_summary_2011_01_02.pdf','service_summary_2011_03_27_rev_2.pdf','service_summary_2011_05_08.pdf','service_summary_2011_06_19.pdf','service_summary_2011_09_04.pdf','service_summary_2011_10_09.pdf',
   'service_summary_2012_01_08.pdf','service_summary_2012_02_12.pdf','service_summary_2012_03_25.pdf','service_summary_2012_05_06.pdf','service_summary_2012_06_17.pdf','service_summary_2012_07_29.pdf',
-  // // 'service_summary_2012_09_02.pdf', // page 22 has a bit of weirdness (missing field on 100D)
-  // // 'service_summary_2012_10_07.pdf', // 320A is split between page 58/59, so the missing_textItems rule breaks, some problems with route 131 NUGGET
   'service_summary_2012_11_18.pdf',
   'service_summary_2013_03_31.pdf','service_summary_2013_05_12.pdf','service_summary_2013_06_23.pdf','service_summary_2013_09_01.pdf','service_summary_2013_10_13.pdf','service_summary_2013_11_24.pdf',
   'service_summary_2014_01_05.pdf','service_summary_2014_03_30.pdf','service_summary_2014_05_11.pdf',
@@ -25,6 +23,8 @@ const allFiles = [
   // all "good" above
   // all "bad" below
 
+  // 'service_summary_2012_09_02.pdf', // page 22 has a bit of weirdness (missing field on 100D)
+  // 'service_summary_2012_10_07.pdf', // 320A is split between page 58/59, so the missing_textItems rule breaks, some problems with route 131 NUGGET
   // 'service_summary_2013_01_06.pdf', // this file is super fucked
   // 'service_summary_2015_09_06.pdf','service_summary_2015_10_11.pdf','service_summary_2015_11_22.pdf', // 33 has invalid branches called 135
   // 'service_summary_2016_01_03.pdf','service_summary_2016_02_14.pdf', // 33 has invalid branches called 135

@@ -75,8 +75,25 @@ const last = (arr) => arr[arr.length - 1];
     }
   }
 
-  const log = ['9 BELLAMY', '9 Warden Stn-Scarborough Centre Stn', 'Saturday', '0', 1];
-  const firstSubServiceJSON = Object.keys(routes[log[0]].branches[log[1]].services[log[2]].subservices[log[3]])[log[4]];
-  console.log({loggin: log, firstSubServiceJSON});
-  console.log(routes[log[0]].branches[log[1]].services[log[2]].subservices[log[3]][firstSubServiceJSON]);
+  const selectedRoute = '9 BELLAMY';
+  const firstBranch = Object.keys(routes[selectedRoute].branches)[0];
+  const firstService = Object.keys(routes[selectedRoute].branches[firstBranch].services)[0];
+  const firstSubService = '0';
+  const firstGroupOfChanges = 0;
+
+  const log = [selectedRoute, firstBranch, firstService, firstSubService, firstGroupOfChanges];
+  console.log({log});
+
+  const subservice = routes[log[0]].branches[log[1]].services[log[2]].subservices[log[3]];
+  const firstSubServiceJSON = Object.keys(subservice)[log[4]];
+
+  console.log({firstSubServiceJSON});
+  console.log(Object.assign({}, ...Object.keys(subservice).map(k => ({[k]: { numFiles: subservice[k].rows.length } }))));
+  // console.log(routes[log[0]].branches[log[1]].services[log[2]].subservices[log[3]][firstSubServiceJSON]);
 })();
+
+
+
+
+
+
