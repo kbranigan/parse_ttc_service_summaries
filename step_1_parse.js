@@ -1024,6 +1024,28 @@ const parseFile = async (filename) => {
       const prevIndex = cellsSortedByLength.findIndex((t) => t.y === y && t.h === h && Math.abs(t.x - x + t.w) <= 2);
       const nextIndex = cellsSortedByLength.findIndex((t) => t.y === y && t.h === h && Math.abs(x - t.x - t.w) <= 2);
 
+      if (filename === 'service_summary_2023_06_18.pdf') {
+        if (pageNum === 37) {
+          if (str === '98') str = '98 WILLOWDALE-SENLAC';
+          else if (str === 'WILLOWDALE') continue;
+          else if (str === 'SENLAC') continue;
+        } else if (pageNum === 46) {
+          if (str === '135') str = '135 Warden Stn-Main Street Stn';
+          else if (str === 'Warden Stn') continue;
+          else if (str === 'Main Street Stn') continue;
+        } else if (pageNum === 47) {
+          if (str === '162') str = '162 LAWRENCE-DONWAY';
+          else if (str === 'LAWRENCE') continue;
+          else if (str === 'DONWAY') continue;
+        } else if (pageNum === 51) {
+          if (str === '929') str = '929 Wilson Stn-Exhibition (Dufferin Gate) Express';
+          else if (['Wilson Stn', 'Exhibition', '(', 'Dufferin Gate', ')', 'Express'].includes(str)) continue;
+        } else if (pageNum === 55) {
+          if (str === '312') str = '312 ST CLAIR-JUNCTION';
+          else if (['ST CLAIR', 'JUNCTION'].includes(str)) continue;
+        }
+      }
+
       // found a element this text is part of
       if (prevIndex !== -1) {
         const prevCell = cellsSortedByLength[prevIndex];
@@ -1332,7 +1354,7 @@ const parseFile = async (filename) => {
             //   console.log(k, cellsSortedYX[k]);
             // }
 
-            console.log({ msg: 'branch is weird', prevRoute, prevBranch, pageNum, x, y, w, h, j, str }); // this should never console.log anything
+            console.log({ primaryCorner, secondaryCorner, msg: 'branch is weird', prevRoute, prevBranch, pageNum, x, y, w, h, j, str }); // this should never console.log anything
             asdf
           }
         } else if (x <= primaryCorner.x) { // last change, yard and round trip distance 'column'
